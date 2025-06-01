@@ -35,7 +35,7 @@ public class VM {
         return ops.size();
     }
 
-    public void eval(final int fromPc, int toPc, final Stack stack) {
+    public void eval(final int fromPc, int toPc, final Values stack) {
         if (toPc == -1) {
             toPc = ops.size() - 1;
         }

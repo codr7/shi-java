@@ -1,8 +1,8 @@
 package codr7.shi.ops;
 
 import codr7.shi.Op;
-import codr7.shi.Stack;
 import codr7.shi.VM;
+import codr7.shi.Values;
 
 public class Put implements Op {
     private final int rTarget;
@@ -13,7 +13,7 @@ public class Put implements Op {
 
     @Override
     public Eval compile(final VM vm, final int pc) {
-        return (final Stack stack) -> {
+        return (final Values stack) -> {
             vm.registers.set(rTarget, stack.pop());
             return pc + 1;
         };

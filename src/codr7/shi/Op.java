@@ -4,6 +4,6 @@ public interface Op {
     Eval compile(VM vm, int pc);
 
     interface Eval {
-        int eval(Stack stack);
+        int eval(Values stack);
     }
 }

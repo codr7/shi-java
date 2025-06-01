@@ -2,7 +2,7 @@ package codr7.shi;
 
 import java.util.ArrayList;
 
-public class Stack {
+final public class Values {
     private final ArrayList<IValue> items = new ArrayList<>();
 
     public IValue peek() {
@@ -13,7 +13,7 @@ public class Stack {
         return items.removeLast();
     }
 
-    public void push(final IValue value) {
-        items.add(value);
+    public void push(final IValue it) {
+        items.add(it);
     }
 }
