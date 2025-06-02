@@ -6,10 +6,10 @@ import java.util.List;
 
 public class VM {
     public final ArrayList<IValue> registers = new ArrayList<>();
-    private final List<Op> ops = new ArrayList<>();
-    private Op.Eval[] opEvals = {};
+    private final List<Operation> operations = new ArrayList<>();
+    private Operation.Eval[] code = {};
 
-    public int alloc(final int n) {
+    public int allocate(final int n) {
         final var result = registers.size();
 
         for (var i = 0; i < n; i++) {
@@ -20,31 +20,31 @@ public class VM {
     }
 
     public void compile(final int fromPc) {
-        opEvals = Arrays.copyOf(opEvals, ops.size());
+        code = Arrays.copyOf(code, operations.size());
 
-        for (var pc = fromPc; pc < ops.size(); pc++) {
-            opEvals[pc] = ops.get(pc).compile(this, pc);
+        for (var pc = fromPc; pc < operations.size(); pc++) {
+            code[pc] = operations.get(pc).compile(this, pc);
         }
     }
 
-    public void emit(final Op op) {
-        ops.add(op);
+    public void emit(final Operation operation) {
+        operations.add(operation);
     }
 
     public int emitPc() {
-        return ops.size();
+        return operations.size();
     }
 
     public void eval(final int fromPc, int toPc, final Values stack) {
         if (toPc == -1) {
-            toPc = ops.size() - 1;
+            toPc = operations.size() - 1;
         }
 
-        if (opEvals.length < ops.size()) {
-            compile(opEvals.length);
+        if (code.length < operations.size()) {
+            compile(code.length);
         }
 
-        for (var pc = fromPc; pc <= toPc; pc = opEvals[pc].eval(stack)) {
+        for (var pc = fromPc; pc <= toPc; pc = code[pc].eval(stack)) {
             // Do nothing
         }
     }

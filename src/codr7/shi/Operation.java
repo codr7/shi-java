@@ -1,6 +1,6 @@
 package codr7.shi;
 
-public interface Op {
+public interface Operation {
     Eval compile(VM vm, int pc);
 
     interface Eval {

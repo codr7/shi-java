@@ -1,4 +1,5 @@
-* add libs
+* add vm.currentLibrary/userLibrary
+* add core library
 * add core types
 * add readers
 ** add forms

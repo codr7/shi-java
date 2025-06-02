@@ -1,10 +1,10 @@
-package codr7.shi.ops;
+package codr7.shi.operations;
 
-import codr7.shi.Op;
+import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class Put implements Op {
+public class Put implements Operation {
     private final int rTarget;
 
     public Put(final int rTarget) {

@@ -1,6 +1,6 @@
 package codr7.shi;
 
-import codr7.shi.ops.Push;
+import codr7.shi.operations.Push;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,13 +8,14 @@ import java.util.stream.Stream;
 
 public abstract class Type<T> implements IType {
     private final Symbol name;
-    private final Set<IType> superTypes = new HashSet<>();
+    private final Set<IType> parents = new HashSet<>();
 
-    public Type(final Symbol name, final IType... superTypes) {
+    public Type(final Symbol name, final IType... parents) {
         this.name = name;
 
-        for (final var st : superTypes) {
-            st.superTypes().forEach(this.superTypes::add);
+        for (final var st : parents) {
+            this.parents.add(st);
+            st.parents().forEach(this.parents::add);
         }
     }
 
@@ -29,12 +30,12 @@ public abstract class Type<T> implements IType {
     }
 
     @Override
-    public final boolean subtypeOf(final IType other) {
-        return superTypes.contains(other);
+    public final Stream<IType> parents() {
+        return parents.stream();
     }
 
     @Override
-    public final Stream<IType> superTypes() {
-        return superTypes.stream();
+    public final boolean subtypeOf(final IType other) {
+        return parents.contains(other);
     }
 }

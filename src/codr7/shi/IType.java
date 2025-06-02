@@ -18,9 +18,9 @@ public interface IType {
 
     Symbol name();
 
-    boolean subtypeOf(IType other);
+    Stream<IType> parents();
 
-    Stream<IType> superTypes();
+    boolean subtypeOf(IType other);
 
     default void write(final IValue value, final PrintStream out) {
         dump(value, out);

@@ -1,11 +1,11 @@
-package codr7.shi.ops;
+package codr7.shi.operations;
 
 import codr7.shi.Label;
-import codr7.shi.Op;
+import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class Goto implements Op {
+public class Goto implements Operation {
     private final Label target;
 
     public Goto(final Label target) {
