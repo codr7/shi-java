@@ -18,7 +18,8 @@ public class Library {
     }
 
     public final IValue find(final Symbol key) {
-        return bindings.computeIfAbsent(key, (k) -> (parent == null) ? null : parent.find(key));
+        final var v = bindings.get(key);
+        return (v == null && parent != null) ? parent.find(key) : v;
     }
 
     public void importFrom(final Library source, final Symbol...keys) {
