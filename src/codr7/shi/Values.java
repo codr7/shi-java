@@ -5,6 +5,14 @@ import java.util.ArrayList;
 final public class Values {
     private final ArrayList<IValue> items = new ArrayList<>();
 
+    public IValue get(final int index) {
+        return items.get(index);
+    }
+
+    public int length() {
+        return items.size();
+    }
+
     public IValue peek() {
         return items.getLast();
     }

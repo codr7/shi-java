@@ -1,0 +1,22 @@
+package codr7.shi.libraries.core;
+
+import codr7.shi.*;
+import codr7.shi.operations.Call;
+
+public final class Method extends Type<codr7.shi.Method> {
+    public Method(final Symbol name, final IType... parents) {
+        super(name, parents);
+    }
+
+    @Override
+    public void emit(IValue value, Sloc sloc, Forms in, VM vm) {
+        final var m = value.cast(this);
+        final var emitArgs = new Forms();
+
+        for (final var a : m.args) {
+            in.popFront().emit(emitArgs, vm);
+        }
+
+        vm.emit(new Call(sloc, m));
+    }
+}

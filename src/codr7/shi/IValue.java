@@ -11,6 +11,8 @@ public interface IValue {
         return (T) value();
     }
 
+    boolean isa(IType type);
+
     IType type();
 
     Object value();
