@@ -1,6 +1,6 @@
-* add vm.currentLibrary/userLibrary
+* add core remaining core types
 * add core library
-* add core types
+* add vm.currentLibrary/userLibrary
 * add readers
 ** add forms
 * add repl

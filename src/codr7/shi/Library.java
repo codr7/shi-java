@@ -22,13 +22,13 @@ public class Library {
         return (v == null && parent != null) ? parent.find(key) : v;
     }
 
-    public void importFrom(final Library source, final Symbol...keys) {
+    public void importFrom(final Library source, final Symbol... keys) {
         if (keys.length == 0) {
-            for (final var e: source.bindings.entrySet()) {
+            for (final var e : source.bindings.entrySet()) {
                 bind(e.getKey(), e.getValue());
             }
         } else {
-            for (final var k: keys) {
+            for (final var k : keys) {
                 final var v = source.find(k);
 
                 if (v == null) {

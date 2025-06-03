@@ -14,4 +14,9 @@ public final class Symbol {
     public static Symbol get(final String name) {
         return lookup.computeIfAbsent(name, (k) -> new Symbol(name));
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

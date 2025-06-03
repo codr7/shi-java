@@ -2,6 +2,7 @@ package codr7.shi;
 
 import codr7.shi.operations.Push;
 
+import java.io.PrintStream;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -17,6 +18,11 @@ public abstract class Type<T> implements IType {
             this.parents.add(st);
             st.parents().forEach(this.parents::add);
         }
+    }
+
+    @Override
+    public void dump(IValue value, PrintStream out) {
+        out.print(value.cast(this));
     }
 
     @Override
@@ -37,5 +43,10 @@ public abstract class Type<T> implements IType {
     @Override
     public final boolean subtypeOf(final IType other) {
         return parents.contains(other);
+    }
+
+    @Override
+    public final String toString() {
+        return name.name;
     }
 }
