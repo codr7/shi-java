@@ -3,8 +3,8 @@ package codr7.shi.libraries.core;
 import codr7.shi.*;
 import codr7.shi.operations.Call;
 
-public final class Method extends Type<codr7.shi.Method> {
-    public Method(final Symbol name, final IType... parents) {
+public final class MethodType extends ScriptType<Method> {
+    public MethodType(final Symbol name, final IType... parents) {
         super(name, parents);
     }
 

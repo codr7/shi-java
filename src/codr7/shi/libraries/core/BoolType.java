@@ -2,13 +2,13 @@ package codr7.shi.libraries.core;
 
 import codr7.shi.IType;
 import codr7.shi.IValue;
+import codr7.shi.ScriptType;
 import codr7.shi.Symbol;
-import codr7.shi.Type;
 
 import java.io.PrintStream;
 
-public final class Bool extends Type<Boolean> {
-    public Bool(final Symbol name, final IType... parents) {
+public final class BoolType extends ScriptType<Boolean> {
+    public BoolType(final Symbol name, final IType... parents) {
         super(name, parents);
     }
 

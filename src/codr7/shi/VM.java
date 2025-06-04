@@ -7,9 +7,9 @@ import java.util.List;
 public class VM {
     public final ArrayList<IValue> registers = new ArrayList<>();
     private final List<Operation> operations = new ArrayList<>();
-    private Operation.Eval[] code = {};
     private final Library userLibrary = new Library(Symbol.get("user"), null);
-    private Library currentLibrary = userLibrary;
+    private Operation.Eval[] code = {};
+    private final Library currentLibrary = userLibrary;
 
     public int allocate(final int n) {
         final var result = registers.size();

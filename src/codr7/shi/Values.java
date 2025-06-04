@@ -24,4 +24,8 @@ final public class Values {
     public void push(final IValue it) {
         items.add(it);
     }
+
+    public <T> void push(final ScriptType<T> type, final T value) {
+        push(new Value<>(type, value));
+    }
 }

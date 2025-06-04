@@ -7,11 +7,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public abstract class Type<T> implements IType {
+public abstract class ScriptType<T> implements IType {
     private final Symbol name;
     private final Set<IType> parents = new HashSet<>();
 
-    public Type(final Symbol name, final IType... parents) {
+    public ScriptType(final Symbol name, final IType... parents) {
         this.name = name;
 
         for (final var st : parents) {

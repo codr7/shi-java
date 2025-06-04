@@ -3,6 +3,7 @@ package codr7.shi;
 public abstract class Method {
     public final Arg[] args;
     public Symbol name;
+
     public Method(final Symbol name, final Arg[] args) {
         this.name = name;
         this.args = args;
