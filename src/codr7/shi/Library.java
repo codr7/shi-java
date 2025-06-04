@@ -1,5 +1,7 @@
 package codr7.shi;
 
+import codr7.shi.libraries.Core;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +19,9 @@ public class Library {
         bindings.put(key, value);
     }
 
+    public final void bind(final IType type) {
+        bind(type.name(), new Value<>(Core.Meta, type));
+    }
     public final IValue find(final Symbol key) {
         final var v = bindings.get(key);
         return (v == null && parent != null) ? parent.find(key) : v;

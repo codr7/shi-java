@@ -8,6 +8,8 @@ public class VM {
     public final ArrayList<IValue> registers = new ArrayList<>();
     private final List<Operation> operations = new ArrayList<>();
     private Operation.Eval[] code = {};
+    private final Library userLibrary = new Library(Symbol.get("user"), null);
+    private Library currentLibrary = userLibrary;
 
     public int allocate(final int n) {
         final var result = registers.size();
@@ -25,6 +27,10 @@ public class VM {
         for (var pc = fromPc; pc < operations.size(); pc++) {
             code[pc] = operations.get(pc).compile(this, pc);
         }
+    }
+
+    public Library currentLibrary() {
+        return currentLibrary;
     }
 
     public void emit(final Operation operation) {
