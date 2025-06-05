@@ -1,5 +1,6 @@
-* add readers
-** add forms
-* add repl
-* add methods
+* implement FormReader
+** add readers
+*** add forms
 * add macros
+** add if macro
+** add method macro

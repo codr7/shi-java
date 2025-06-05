@@ -18,6 +18,10 @@ public final class Sloc {
         return new Sloc(source, line, column);
     }
 
+    public int line() {
+        return line;
+    }
+
     public char step(final char c) {
         if (c == '\n') {
             line++;

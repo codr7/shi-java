@@ -1,5 +1,7 @@
 package codr7.shi;
 
+import java.io.PrintStream;
+
 public interface IValue {
     boolean asBool();
 
@@ -10,6 +12,8 @@ public interface IValue {
 
         return (T) value();
     }
+
+    void dump(PrintStream out);
 
     boolean isa(IType type);
 

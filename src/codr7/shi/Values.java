@@ -1,9 +1,22 @@
 package codr7.shi;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 final public class Values {
     private final ArrayList<IValue> items = new ArrayList<>();
+
+    public void dump(final PrintStream out) {
+        out.print('[');
+        for (var i = 0; i < items.size(); i++) {
+            if (i > 0) {
+                out.print(' ');
+            }
+
+            items.get(i).dump(out);
+        }
+        out.print(']');
+    }
 
     public IValue get(final int index) {
         return items.get(index);
