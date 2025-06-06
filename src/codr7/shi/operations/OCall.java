@@ -1,13 +1,13 @@
 package codr7.shi.operations;
 
 import codr7.shi.*;
-import codr7.shi.errors.EvalError;
+import codr7.shi.errors.EEval;
 
-public class Call implements Operation {
+public class OCall implements Operation {
     private final Sloc sloc;
     private final Method target;
 
-    public Call(final Sloc sloc, final Method target) {
+    public OCall(final Sloc sloc, final Method target) {
         this.sloc = sloc;
         this.target = target;
     }
@@ -20,7 +20,7 @@ public class Call implements Operation {
             final var sl = stack.length();
 
             if (sl < al) {
-                throw new EvalError(sloc, "Not enough args");
+                throw new EEval(sloc, "Not enough args");
             }
 
             for (var i = 0; i < al; i++) {
@@ -28,7 +28,7 @@ public class Call implements Operation {
                 final var v = stack.get(sl - i - 1);
 
                 if (!v.isa(at)) {
-                    throw new EvalError(sloc, "Type mismatch: expected " + at + ", actual " + v.type());
+                    throw new EEval(sloc, "Type mismatch: expected " + at + ", actual " + v.type());
                 }
             }
 

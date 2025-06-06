@@ -1,14 +1,14 @@
 package codr7.shi.forms;
 
 import codr7.shi.*;
-import codr7.shi.operations.Push;
+import codr7.shi.operations.OPush;
 
 import java.io.PrintStream;
 
-public class LiteralForm extends Form {
+public class FLiteral extends Form {
     public final IValue value;
 
-    public LiteralForm(final Sloc sloc, final IValue value) {
+    public FLiteral(final Sloc sloc, final IValue value) {
         super(sloc);
         this.value = value;
     }
@@ -20,6 +20,6 @@ public class LiteralForm extends Form {
 
     @Override
     public void emit(final Forms in, final VM vm) {
-        vm.emit(new Push(value));
+        vm.emit(new OPush(value));
     }
 }

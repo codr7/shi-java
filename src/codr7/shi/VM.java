@@ -1,6 +1,6 @@
 package codr7.shi;
 
-import codr7.shi.readers.FormReader;
+import codr7.shi.readers.RForm;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class VM {
     public final ArrayList<IValue> registers = new ArrayList<>();
-    private final Reader reader = FormReader.INSTANCE;
+    private final Reader reader = RForm.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
     private final Library userLibrary = new Library(Symbol.get("user"), null);
     private Library currentLibrary = userLibrary;

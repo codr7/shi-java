@@ -7,10 +7,10 @@ import codr7.shi.VM;
 
 import java.io.PrintStream;
 
-public class ScopeForm extends Form {
+public class FScope extends Form {
     public final Form[] body;
 
-    public ScopeForm(final Sloc sloc, final Form[] body) {
+    public FScope(final Sloc sloc, final Form[] body) {
         super(sloc);
         this.body = body;
     }

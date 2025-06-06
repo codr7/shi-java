@@ -24,11 +24,11 @@ public class Library {
     }
 
     public final void bind(final Symbol name, final Method.Arg[] args, final HostMethod.Body body) {
-        bind(name, Core.METHOD, new HostMethod(name, args, body));
+        bind(name, Core.Method, new HostMethod(name, args, body));
     }
 
     public final void bind(final IType type) {
-        bind(type.name(), Core.META, type);
+        bind(type.name(), Core.Meta, type);
     }
 
     public final IValue find(final Symbol key) {

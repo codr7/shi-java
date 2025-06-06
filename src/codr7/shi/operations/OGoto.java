@@ -5,10 +5,10 @@ import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class Goto implements Operation {
+public class OGoto implements Operation {
     private final Label target;
 
-    public Goto(final Label target) {
+    public OGoto(final Label target) {
         this.target = target;
     }
 

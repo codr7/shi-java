@@ -1,11 +1,11 @@
 package codr7.shi.readers;
 
 import codr7.shi.*;
-import codr7.shi.errors.ReadError;
-import codr7.shi.forms.IdForm;
+import codr7.shi.errors.ERead;
+import codr7.shi.forms.FId;
 
-public class IdReader implements Reader {
-    public static final IdReader INSTANCE = new IdReader();
+public class RId implements Reader {
+    public static final RId INSTANCE = new RId();
 
     public boolean read(final VM vm, final Input in, final Forms out) {
         final var formSloc = in.sloc().dup();
@@ -23,10 +23,10 @@ public class IdReader implements Reader {
         }
 
         if (buf.isEmpty()) {
-            throw new ReadError(formSloc, "Invalid id");
+            throw new ERead(formSloc, "Invalid id");
         }
 
-        out.pushBack(new IdForm(formSloc, Symbol.get(buf.toString())));
+        out.pushBack(new FId(formSloc, Symbol.get(buf.toString())));
         return true;
     }
 }

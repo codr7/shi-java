@@ -4,11 +4,11 @@ import codr7.shi.Forms;
 import codr7.shi.Input;
 import codr7.shi.Reader;
 import codr7.shi.VM;
-import codr7.shi.errors.ReadError;
-import codr7.shi.forms.ScopeForm;
+import codr7.shi.errors.ERead;
+import codr7.shi.forms.FScope;
 
-public class ScopeReader implements Reader {
-    public static final ScopeReader INSTANCE = new ScopeReader();
+public class RScope implements Reader {
+    public static final RScope INSTANCE = new RScope();
 
     public boolean read(final VM vm, final Input in, final Forms out) {
         final var formSloc = in.sloc().dup();
@@ -16,11 +16,11 @@ public class ScopeReader implements Reader {
 
         if (in.get() != '(') {
             in.unget();
-            throw new ReadError(in.sloc(), "Invalid scope");
+            throw new ERead(in.sloc(), "Invalid scope");
         }
 
         for (; ; ) {
-            SpaceReader.INSTANCE.read(vm, in, out);
+            RSpace.INSTANCE.read(vm, in, out);
             final var c = in.get();
 
             if (c == ')') {
@@ -30,11 +30,11 @@ public class ScopeReader implements Reader {
             in.unget();
 
             if (!vm.readForm(in, body)) {
-                throw new ReadError(in.sloc(), "Missing scope end");
+                throw new ERead(in.sloc(), "Missing scope end");
             }
         }
 
-        out.pushBack(new ScopeForm(formSloc, body.toArray()));
+        out.pushBack(new FScope(formSloc, body.toArray()));
         return true;
     }
 }

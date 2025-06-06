@@ -4,10 +4,10 @@ import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class Get implements Operation {
+public class OGet implements Operation {
     private final int rSource;
 
-    public Get(final int rSource) {
+    public OGet(final int rSource) {
         this.rSource = rSource;
     }
 

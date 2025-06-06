@@ -7,8 +7,8 @@ import codr7.shi.Symbol;
 
 import java.io.PrintStream;
 
-public final class BoolType extends ScriptType<Boolean> {
-    public BoolType(final Symbol name, final IType... parents) {
+public final class TBool extends ScriptType<Boolean> {
+    public TBool(final Symbol name, final IType... parents) {
         super(name, parents);
     }
 

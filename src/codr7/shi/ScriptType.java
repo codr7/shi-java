@@ -1,6 +1,6 @@
 package codr7.shi;
 
-import codr7.shi.operations.Push;
+import codr7.shi.operations.OPush;
 
 import java.io.PrintStream;
 import java.util.HashSet;
@@ -27,7 +27,7 @@ public abstract class ScriptType<T> implements IType {
 
     @Override
     public void emit(final IValue value, final Sloc sloc, final Forms in, final VM vm) {
-        vm.emit(new Push(value));
+        vm.emit(new OPush(value));
     }
 
     @Override

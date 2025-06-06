@@ -1,20 +1,21 @@
 package codr7.shi.operations;
 
+import codr7.shi.IValue;
 import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class Put implements Operation {
-    private final int rTarget;
+public class OPush implements Operation {
+    private final IValue value;
 
-    public Put(final int rTarget) {
-        this.rTarget = rTarget;
+    public OPush(final IValue value) {
+        this.value = value;
     }
 
     @Override
     public Eval compile(final VM vm, final int pc) {
         return (final Values stack) -> {
-            vm.registers.set(rTarget, stack.pop());
+            stack.push(value);
             return pc + 1;
         };
     }

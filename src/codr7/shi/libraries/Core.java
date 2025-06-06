@@ -1,50 +1,50 @@
 package codr7.shi.libraries;
 
 import codr7.shi.*;
-import codr7.shi.libraries.core.BoolType;
-import codr7.shi.libraries.core.IntType;
-import codr7.shi.libraries.core.MetaType;
-import codr7.shi.libraries.core.MethodType;
+import codr7.shi.libraries.core.TBool;
+import codr7.shi.libraries.core.TInt;
+import codr7.shi.libraries.core.TMeta;
+import codr7.shi.libraries.core.TMethod;
 
 public class Core extends Library {
-    public static final BoolType BOOL = new BoolType(Symbol.get("Bool"));
-    public static final IntType INT = new IntType(Symbol.get("Int"));
-    public static final MetaType META = new MetaType(Symbol.get("Meta"));
-    public static final MethodType METHOD = new MethodType(Symbol.get("Method"));
+    public static final TBool Bool = new TBool(Symbol.get("Bool"));
+    public static final TInt Int = new TInt(Symbol.get("Int"));
+    public static final TMeta Meta = new TMeta(Symbol.get("Meta"));
+    public static final TMethod Method = new TMethod(Symbol.get("Method"));
 
     public Core(final Symbol name, final Library parent) {
         super(name, parent);
 
-        bind(BOOL);
-        bind(INT);
-        bind(META);
-        bind(METHOD);
+        bind(Bool);
+        bind(Int);
+        bind(Meta);
+        bind(Method);
 
-        bind(Symbol.get("T"), new Value<>(BOOL, true));
-        bind(Symbol.get("F"), new Value<>(BOOL, false));
+        bind(Symbol.get("T"), new Value<>(Bool, true));
+        bind(Symbol.get("F"), new Value<>(Bool, false));
 
         bind(Symbol.get("+"),
-                new Method.Arg[]{new Method.Arg("x", INT), new Method.Arg("y", INT)},
+                new Method.Arg[]{new Method.Arg("x", Int), new Method.Arg("y", Int)},
                 (final Sloc sloc, final Values stack, final VM vm) -> {
-                    final var y = stack.pop().cast(INT);
-                    final var x = stack.pop().cast(INT);
-                    stack.push(INT, x + y);
+                    final var y = stack.pop().cast(Int);
+                    final var x = stack.pop().cast(Int);
+                    stack.push(Int, x + y);
                 });
 
         bind(Symbol.get("-"),
-                new Method.Arg[]{new Method.Arg("x", INT), new Method.Arg("y", INT)},
+                new Method.Arg[]{new Method.Arg("x", Int), new Method.Arg("y", Int)},
                 (final Sloc sloc, final Values stack, final VM vm) -> {
-                    final var y = stack.pop().cast(INT);
-                    final var x = stack.pop().cast(INT);
-                    stack.push(INT, x - y);
+                    final var y = stack.pop().cast(Int);
+                    final var x = stack.pop().cast(Int);
+                    stack.push(Int, x - y);
                 });
 
         bind(Symbol.get("<"),
-                new Method.Arg[]{new Method.Arg("x", INT), new Method.Arg("y", INT)},
+                new Method.Arg[]{new Method.Arg("x", Int), new Method.Arg("y", Int)},
                 (final Sloc sloc, final Values stack, final VM vm) -> {
-                    final var y = stack.pop().cast(INT);
-                    final var x = stack.pop().cast(INT);
-                    stack.push(BOOL, x < y);
+                    final var y = stack.pop().cast(Int);
+                    final var x = stack.pop().cast(Int);
+                    stack.push(Bool, x < y);
                 });
     }
 }

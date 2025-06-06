@@ -1,10 +1,10 @@
 package codr7.shi.libraries.core;
 
 import codr7.shi.*;
-import codr7.shi.operations.Call;
+import codr7.shi.operations.OCall;
 
-public final class MethodType extends ScriptType<Method> {
-    public MethodType(final Symbol name, final IType... parents) {
+public final class TMethod extends ScriptType<Method> {
+    public TMethod(final Symbol name, final IType... parents) {
         super(name, parents);
     }
 
@@ -17,6 +17,6 @@ public final class MethodType extends ScriptType<Method> {
             in.popFront().emit(emitArgs, vm);
         }
 
-        vm.emit(new Call(sloc, m));
+        vm.emit(new OCall(sloc, m));
     }
 }

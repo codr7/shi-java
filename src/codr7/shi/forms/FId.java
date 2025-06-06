@@ -1,14 +1,14 @@
 package codr7.shi.forms;
 
 import codr7.shi.*;
-import codr7.shi.errors.EmitError;
+import codr7.shi.errors.EEmit;
 
 import java.io.PrintStream;
 
-public class IdForm extends Form {
+public class FId extends Form {
     public final Symbol name;
 
-    public IdForm(final Sloc sloc, final Symbol name) {
+    public FId(final Sloc sloc, final Symbol name) {
         super(sloc);
         this.name = name;
     }
@@ -23,7 +23,7 @@ public class IdForm extends Form {
         final var v = vm.currentLibrary().find(name);
 
         if (v == null) {
-            throw new EmitError(sloc, "Unknown identifer: " + name);
+            throw new EEmit(sloc, "Unknown identifer: " + name);
         }
 
         v.emit(sloc, in, vm);

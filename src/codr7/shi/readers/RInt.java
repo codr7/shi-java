@@ -1,11 +1,11 @@
 package codr7.shi.readers;
 
 import codr7.shi.*;
-import codr7.shi.forms.LiteralForm;
+import codr7.shi.forms.FLiteral;
 import codr7.shi.libraries.Core;
 
-public class IntReader implements Reader {
-    public static final IntReader INSTANCE = new IntReader();
+public class RInt implements Reader {
+    public static final RInt INSTANCE = new RInt();
 
     public boolean read(final VM vm, final Input in, final Forms out) {
         final var formSloc = in.sloc().dup();
@@ -22,7 +22,7 @@ public class IntReader implements Reader {
             v = v * 10 + c - '0';
         }
 
-        out.pushBack(new LiteralForm(formSloc, new Value<>(Core.INT, v)));
+        out.pushBack(new FLiteral(formSloc, new Value<>(Core.Int, v)));
         return true;
     }
 }

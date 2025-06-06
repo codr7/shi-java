@@ -5,10 +5,10 @@ import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class Branch implements Operation {
+public class OBranch implements Operation {
     private final Label end;
 
-    public Branch(final Label end) {
+    public OBranch(final Label end) {
         this.end = end;
     }
 
