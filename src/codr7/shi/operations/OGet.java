@@ -12,7 +12,7 @@ public class OGet implements Operation {
     }
 
     @Override
-    public Eval compile(final VM vm, final int pc) {
+    public Evaluate compile(final VM vm, final int pc) {
         return (final Values stack) -> {
             stack.push(vm.registers.get(rSource));
             return pc + 1;

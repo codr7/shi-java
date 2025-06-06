@@ -13,7 +13,7 @@ public class OBranch implements Operation {
     }
 
     @Override
-    public Eval compile(final VM vm, final int pc) {
+    public Evaluate compile(final VM vm, final int pc) {
         return (final Values stack) -> stack.pop().asBool() ? pc + 1 : end.pc;
     }
 }

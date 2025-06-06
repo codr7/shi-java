@@ -12,7 +12,7 @@ public class OPut implements Operation {
     }
 
     @Override
-    public Eval compile(final VM vm, final int pc) {
+    public Evaluate compile(final VM vm, final int pc) {
         return (final Values stack) -> {
             vm.registers.set(rTarget, stack.pop());
             return pc + 1;

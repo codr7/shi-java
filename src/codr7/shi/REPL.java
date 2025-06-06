@@ -31,7 +31,7 @@ public class REPL {
 
             if (line.isEmpty()) {
                 try {
-                    vm.eval(inputBuffer.toString(), stack, sloc);
+                    vm.evaluate(inputBuffer.toString(), stack, sloc);
                     stack.dump(out);
                     out.println();
                     out.println();

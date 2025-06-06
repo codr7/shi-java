@@ -13,7 +13,7 @@ public class OCall implements Operation {
     }
 
     @Override
-    public Eval compile(final VM vm, final int pc) {
+    public Evaluate compile(final VM vm, final int pc) {
         return (final Values stack) -> {
             final var as = target.args;
             final var al = as.length;

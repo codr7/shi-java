@@ -13,7 +13,7 @@ public class VM {
     private final List<Operation> operations = new ArrayList<>();
     private final Library userLibrary = new Library(Symbol.get("user"), null);
     private Library currentLibrary = userLibrary;
-    private Operation.Eval[] code = {};
+    private Operation.Evaluate[] code = {};
 
     public int allocate(final int n) {
         final var result = registers.size();
@@ -45,7 +45,7 @@ public class VM {
         return operations.size();
     }
 
-    public void eval(final int fromPc, int toPc, final Values stack) {
+    public void evaluate(final int fromPc, int toPc, final Values stack) {
         if (toPc == -1) {
             toPc = operations.size() - 1;
         }
@@ -59,12 +59,12 @@ public class VM {
         }
     }
 
-    public void eval(final String in, final Values stack, final Sloc sloc) {
+    public void evaluate(final String in, final Values stack, final Sloc sloc) {
         final var startPc = emitPc();
         final var forms = new Forms();
         read(new Input(new StringReader(in), sloc), forms);
         forms.emit(this);
-        eval(startPc, -1, stack);
+        evaluate(startPc, -1, stack);
     }
 
     public void read(final Input in, final Forms out) {

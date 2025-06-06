@@ -1,9 +1,9 @@
 package codr7.shi;
 
 public interface Operation {
-    Eval compile(VM vm, int pc);
+    Evaluate compile(VM vm, int pc);
 
-    interface Eval {
+    interface Evaluate {
         int eval(Values stack);
     }
 }
