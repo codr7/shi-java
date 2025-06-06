@@ -6,14 +6,14 @@ import codr7.shi.libraries.core.TInt;
 import codr7.shi.libraries.core.TMeta;
 import codr7.shi.libraries.core.TMethod;
 
-public class Core extends Library {
+public class LCore extends Library {
     public static final TBool Bool = new TBool(Symbol.get("Bool"));
     public static final TInt Int = new TInt(Symbol.get("Int"));
     public static final TMeta Meta = new TMeta(Symbol.get("Meta"));
     public static final TMethod Method = new TMethod(Symbol.get("Method"));
 
-    public Core(final Symbol name, final Library parent) {
-        super(name, parent);
+    public LCore() {
+        super(Symbol.get("core"), null);
 
         bind(Bool);
         bind(Int);

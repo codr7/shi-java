@@ -1,6 +1,6 @@
 package codr7.shi;
 
-import codr7.shi.libraries.Core;
+import codr7.shi.libraries.LCore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,11 +24,11 @@ public class Library {
     }
 
     public final void bind(final Symbol name, final Method.Arg[] args, final HostMethod.Body body) {
-        bind(name, Core.Method, new HostMethod(name, args, body));
+        bind(name, LCore.Method, new HostMethod(name, args, body));
     }
 
     public final void bind(final IType type) {
-        bind(type.name(), Core.Meta, type);
+        bind(type.name(), LCore.Meta, type);
     }
 
     public final IValue find(final Symbol key) {
