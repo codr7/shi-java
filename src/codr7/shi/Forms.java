@@ -22,4 +22,8 @@ final public class Forms {
     public void pushBack(final Form it) {
         items.addLast(it);
     }
+
+    public Form[] toArray() {
+        return items.toArray(new Form[0]);
+    }
 }

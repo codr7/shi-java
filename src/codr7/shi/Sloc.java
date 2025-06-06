@@ -22,15 +22,13 @@ public final class Sloc {
         return line;
     }
 
-    public char step(final char c) {
+    public void step(final int c) {
         if (c == '\n') {
             line++;
             column = 1;
         } else {
             column++;
         }
-
-        return c;
     }
 
     public String toString() {

@@ -34,6 +34,7 @@ public class REPL {
                     vm.eval(inputBuffer.toString(), stack, sloc);
                     stack.dump(out);
                     out.println();
+                    out.println();
                 } catch (final Exception e) {
                     out.println(e.getMessage());
                 } finally {

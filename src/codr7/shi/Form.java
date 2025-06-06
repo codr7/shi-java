@@ -1,5 +1,7 @@
 package codr7.shi;
 
+import java.io.PrintStream;
+
 public abstract class Form {
     public final Sloc sloc;
 
@@ -7,7 +9,7 @@ public abstract class Form {
         this.sloc = sloc;
     }
 
-    public abstract String dump(VM vm);
+    public abstract void dump(final PrintStream out, final VM vm);
 
-    public abstract void emit(Forms in, VM vm);
+    public abstract void emit(final Forms in, final VM vm);
 }

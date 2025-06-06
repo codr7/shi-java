@@ -36,7 +36,7 @@ public class Core extends Library {
                 (final Sloc sloc, final Values stack, final VM vm) -> {
                     final var y = stack.pop().cast(INT);
                     final var x = stack.pop().cast(INT);
-                    stack.push(INT, x + y);
+                    stack.push(INT, x - y);
                 });
 
         bind(Symbol.get("<"),

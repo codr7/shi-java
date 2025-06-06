@@ -5,7 +5,7 @@ import java.io.PrintStream;
 public interface IValue {
     boolean asBool();
 
-    default <T> T cast(ScriptType<T> type) {
+    default <T> T cast(final ScriptType<T> type) {
         if (type != this.type()) {
             throw new RuntimeException("Type mismatch: expected " + this.type() + ", actual: " + type);
         }
@@ -14,6 +14,8 @@ public interface IValue {
     }
 
     void dump(PrintStream out);
+
+    void emit(Sloc sloc, Forms in, VM vm);
 
     boolean isa(IType type);
 

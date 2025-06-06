@@ -2,7 +2,6 @@ package codr7.shi;
 
 import codr7.shi.readers.FormReader;
 
-import java.io.PushbackReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +12,7 @@ public class VM {
     private final Reader reader = FormReader.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
     private final Library userLibrary = new Library(Symbol.get("user"), null);
-    private final Library currentLibrary = userLibrary;
+    private Library currentLibrary = userLibrary;
     private Operation.Eval[] code = {};
 
     public int allocate(final int n) {
@@ -63,14 +62,37 @@ public class VM {
     public void eval(final String in, final Values stack, final Sloc sloc) {
         final var startPc = emitPc();
         final var forms = new Forms();
-        read(new PushbackReader(new StringReader(in)), forms, sloc);
+        read(new Input(new StringReader(in), sloc), forms);
         forms.emit(this);
         eval(startPc, -1, stack);
     }
 
-    public void read(final PushbackReader in, final Forms out, final Sloc sloc) {
-        while (reader.read(this, in, out, sloc)) {
+    public void read(final Input in, final Forms out) {
+        while (readForm(in, out)) {
             // Do nothing
         }
+    }
+
+    public boolean readForm(final Input in, final Forms out) {
+        return reader.read(this, in, out);
+    }
+
+    public void withLibrary(Library library, final Callback callback) {
+        if (library == null) {
+            library = new Library(currentLibrary.name, currentLibrary);
+        }
+
+        final var prev = currentLibrary;
+        currentLibrary = library;
+
+        try {
+            callback.call();
+        } finally {
+            currentLibrary = prev;
+        }
+    }
+
+    public interface Callback {
+        void call();
     }
 }

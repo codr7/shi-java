@@ -32,7 +32,7 @@ public class Call implements Operation {
                 }
             }
 
-            return target.call(sloc, pc, stack, vm);
+            return target.call(sloc, pc + 1, stack, vm);
         };
     }
 }

@@ -9,7 +9,7 @@ public final class MethodType extends ScriptType<Method> {
     }
 
     @Override
-    public void emit(IValue value, Sloc sloc, Forms in, VM vm) {
+    public void emit(final IValue value, final Sloc sloc, final Forms in, final VM vm) {
         final var m = value.cast(this);
         final var emitArgs = new Forms();
 
