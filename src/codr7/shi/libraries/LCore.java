@@ -105,9 +105,9 @@ public class LCore extends Library {
 
                     final var end = new Label();
                     vm.emit(new OGoto(end));
-                    final var m = new ScriptMethod(name, args, vm.emitPc());
+                    final var rArgs = vm.allocate(args.length());
+                    final var m = new ScriptMethod(name, args, rArgs, vm.emitPc());
                     vm.currentLibrary().bind(name, new Value<>(LCore.Method, m));
-                    final var rArgs = vm.allocate(m.arguments.length);
 
                     vm.withLibrary(null, () -> {
                         for (var i = 0; i < m.arguments.length; i++) {

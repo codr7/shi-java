@@ -1,4 +1,2 @@
-* fix fib
-** backup/restore registers
-* benchmark
+* benchmark fib
 * add tail fib

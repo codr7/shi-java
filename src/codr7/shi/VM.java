@@ -97,11 +97,22 @@ public class VM {
     public Call popCall() {
         final var result = callStack;
         callStack = result.parent();
+
+        for (var i = 0; i < result.registers().length; i++) {
+            this.registers.set(result.target().rArguments + i, result.registers()[i]);
+        }
+
         return result;
     }
 
-    public void pushCall(Sloc sloc, Method target, int returnPc) {
-        callStack = new Call(callStack, sloc, target, returnPc);
+    public void pushCall(Sloc sloc, ScriptMethod target, int returnPc) {
+        final var registers = new IValue[target.arguments.length];
+
+        for (var i = 0; i < registers.length; i++) {
+            registers[i] = this.registers.get(target.rArguments + i);
+        }
+
+        callStack = new Call(callStack, sloc, target, registers, returnPc);
     }
 
     public void read(final Input in, final Forms out) {

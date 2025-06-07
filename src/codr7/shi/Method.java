@@ -28,6 +28,10 @@ public abstract class Method {
             return add(Symbol.get(name), type);
         }
 
+        public int length() {
+            return items.size();
+        }
+
         public Argument[] toArray() {
             return items.toArray(new Argument[0]);
         }
