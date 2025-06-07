@@ -9,8 +9,8 @@ public record Value<T>(ScriptType<T> type, T value) implements IValue {
     }
 
     @Override
-    public void dump(final PrintStream out) {
-        type.dump(this, out);
+    public void dump(final VM vm, final PrintStream out) {
+        type.dump(this, vm, out);
     }
 
     public void emit(final VM vm, final Forms in, final Sloc sloc) {

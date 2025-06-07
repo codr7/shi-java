@@ -32,7 +32,7 @@ public class REPL {
             if (line.isEmpty()) {
                 try {
                     vm.evaluate(inputBuffer.toString(), stack, sloc);
-                    stack.dump(out);
+                    stack.dump(vm, out);
                     out.println();
                     out.println();
                 } catch (final Exception e) {

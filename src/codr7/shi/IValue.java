@@ -1,8 +1,6 @@
 package codr7.shi;
 
-import java.io.PrintStream;
-
-public interface IValue {
+public interface IValue extends Dumper {
     boolean asBool();
 
     default <T> T cast(final ScriptType<T> type) {
@@ -12,8 +10,6 @@ public interface IValue {
 
         return (T) value();
     }
-
-    void dump(PrintStream out);
 
     void emit(VM vm, Forms in, Sloc sloc);
 

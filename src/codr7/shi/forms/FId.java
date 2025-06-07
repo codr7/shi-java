@@ -14,18 +14,23 @@ public class FId extends Form {
     }
 
     @Override
-    public void dump(final PrintStream out, final VM vm) {
+    public void dump(final VM vm, final PrintStream out) {
         out.print(name.toString());
     }
 
     @Override
-    public void emit(final Forms in, final VM vm) {
-        final var v = vm.currentLibrary().find(name);
+    public void emit(final VM vm, final Forms in) {
+        final var v = value(vm);
 
         if (v == null) {
             throw new EEmit(sloc, "Unknown identifer: " + name);
         }
 
         v.emit(vm, in, sloc);
+    }
+
+    @Override
+    public IValue value(final VM vm) {
+        return vm.currentLibrary().find(name);
     }
 }

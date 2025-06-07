@@ -7,16 +7,16 @@ import codr7.shi.VM;
 
 import java.io.PrintStream;
 
-public class FScope extends Form {
+public class FList extends Form {
     public final Form[] body;
 
-    public FScope(final Sloc sloc, final Form[] body) {
+    public FList(final Sloc sloc, final Form[] body) {
         super(sloc);
         this.body = body;
     }
 
     @Override
-    public void dump(final PrintStream out, final VM vm) {
+    public void dump(final VM vm, final PrintStream out) {
         out.print('(');
 
         for (var i = 0; i < body.length; i++) {
@@ -24,17 +24,17 @@ public class FScope extends Form {
                 out.print(' ');
             }
 
-            body[i].dump(out, vm);
+            body[i].dump(vm, out);
         }
 
         out.print(')');
     }
 
     @Override
-    public void emit(final Forms in, final VM vm) {
+    public void emit(final VM vm, final Forms in) {
         vm.withLibrary(null, () -> {
             for (final var f : body) {
-                f.emit(in, vm);
+                f.emit(vm, in);
             }
         });
     }

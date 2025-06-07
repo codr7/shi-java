@@ -3,7 +3,7 @@ package codr7.shi.libraries.core;
 import codr7.shi.*;
 
 public final class TMacro extends ScriptType<Macro> {
-    public TMacro(final Symbol name, final IType... parents) {
+    public TMacro(final String name, final IType... parents) {
         super(name, parents);
     }
 

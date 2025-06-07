@@ -1,21 +1,15 @@
 package codr7.shi;
 
-import codr7.shi.errors.EEval;
-
 public final class HostMethod extends Method {
     private final Body body;
 
-    public HostMethod(final Symbol name, final Arg[] args, final Body body) {
-        super(name, args);
+    public HostMethod(final Symbol name, final Arguments arguments, final Body body) {
+        super(name, arguments);
         this.body = body;
     }
 
     @Override
     public int call(final VM vm, final int pc, final Values stack, final Sloc sloc) {
-        if (stack.length() < args.length) {
-            throw new EEval(sloc, "Not enough arguments");
-        }
-
         body.call(vm, stack, sloc);
         return pc;
     }

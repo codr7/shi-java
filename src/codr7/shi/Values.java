@@ -6,14 +6,14 @@ import java.util.ArrayList;
 final public class Values {
     private final ArrayList<IValue> items = new ArrayList<>();
 
-    public void dump(final PrintStream out) {
+    public void dump(final VM vm, final PrintStream out) {
         out.print('[');
         for (var i = 0; i < items.size(); i++) {
             if (i > 0) {
                 out.print(' ');
             }
 
-            items.get(i).dump(out);
+            items.get(i).dump(vm, out);
         }
         out.print(']');
     }

@@ -8,7 +8,7 @@ public interface IType {
         return true;
     }
 
-    void dump(IValue value, PrintStream out);
+    void dump(IValue value, VM vm, PrintStream out);
 
     default IValue dup(final IValue value, final VM vm) {
         return value;
@@ -22,7 +22,7 @@ public interface IType {
 
     boolean subtypeOf(IType other);
 
-    default void write(final IValue value, final PrintStream out) {
-        dump(value, out);
+    default void write(final IValue value, final VM vm, final PrintStream out) {
+        dump(value, vm, out);
     }
 }

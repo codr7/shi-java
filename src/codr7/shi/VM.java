@@ -11,8 +11,9 @@ public class VM {
     public final ArrayList<IValue> registers = new ArrayList<>();
     private final Reader reader = RForm.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
-    private final Library userLibrary = new Library(Symbol.get("user"), null);
+    private final Library userLibrary = new Library("user", null);
     private Library currentLibrary = userLibrary;
+    private Call callStack = null;
     private Operation.Evaluate[] code = {};
 
     public int allocate(final int n) {
@@ -65,6 +66,16 @@ public class VM {
         read(new Input(new StringReader(in), sloc), forms);
         forms.emit(this);
         evaluate(startPc, -1, stack);
+    }
+
+    public Call popCall() {
+        final var result = callStack;
+        callStack = result.parent();
+        return result;
+    }
+
+    public void pushCall(Sloc sloc, Method target, int returnPc) {
+        callStack = new Call(callStack, sloc, target, returnPc);
     }
 
     public void read(final Input in, final Forms out) {

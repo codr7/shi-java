@@ -1,15 +1,33 @@
 package codr7.shi;
 
-import java.io.PrintStream;
+import codr7.shi.errors.EEvaluate;
 
-public abstract class Form {
+public abstract class Form implements Dumper {
     public final Sloc sloc;
 
     public Form(final Sloc sloc) {
         this.sloc = sloc;
     }
 
-    public abstract void dump(final PrintStream out, final VM vm);
+    public <T extends Form> T cast(final Class<T> expected) {
+        final var actual = getClass();
 
-    public abstract void emit(final Forms in, final VM vm);
+        if (actual != expected) {
+            throw new EEvaluate(sloc, "Expected " + expected.getName() + ", actual " + actual.getName());
+        }
+
+        return (T) this;
+    }
+
+    public abstract void emit(final VM vm, final Forms in);
+
+    public IValue value(final VM vm) {
+        return null;
+    }
+
+    public <T> T value(final VM vm, ScriptType<T> type) {
+        final var v = value(vm);
+        return (v == null) ? null : v.cast(type);
+    }
+
 }

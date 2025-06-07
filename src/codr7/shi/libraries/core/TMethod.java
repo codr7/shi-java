@@ -4,7 +4,7 @@ import codr7.shi.*;
 import codr7.shi.operations.OCall;
 
 public final class TMethod extends ScriptType<Method> {
-    public TMethod(final Symbol name, final IType... parents) {
+    public TMethod(final String name, final IType... parents) {
         super(name, parents);
     }
 
@@ -13,8 +13,8 @@ public final class TMethod extends ScriptType<Method> {
         final var m = value.cast(this);
         final var emitArgs = new Forms();
 
-        for (final var a : m.args) {
-            in.popFront().emit(emitArgs, vm);
+        for (final var a : m.arguments) {
+            in.popFront().emit(vm, emitArgs);
         }
 
         vm.emit(new OCall(sloc, m));

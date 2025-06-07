@@ -15,20 +15,32 @@ public class Library {
         this.parent = parent;
     }
 
+    public Library(final String name, final Library parent) {
+        this(Symbol.get(name), parent);
+    }
+
     public final void bind(final Symbol key, final IValue value) {
         bindings.put(key, value);
+    }
+
+    public final void bind(final String key, final IValue value) {
+        bind(Symbol.get(key), value);
     }
 
     public final <T> void bind(final Symbol key, final ScriptType<T> type, final T value) {
         bind(key, new Value<>(type, value));
     }
 
-    public final void bindMacro(final Symbol name, final String[] args, final HostMacro.Body body) {
-        bind(name, LCore.Macro, new HostMacro(name, args, body));
+    public final <T> void bind(final String key, final ScriptType<T> type, final T value) {
+        bind(Symbol.get(key), type, value);
     }
 
-    public final void bindMethod(final Symbol name, final Method.Arg[] args, final HostMethod.Body body) {
-        bind(name, LCore.Method, new HostMethod(name, args, body));
+    public final void bindMacro(final String name, final Macro.Arguments arguments, final HostMacro.Body body) {
+        bind(name, LCore.Macro, new HostMacro(Symbol.get(name), arguments, body));
+    }
+
+    public final void bindMethod(final String name, final Method.Arguments arguments, final HostMethod.Body body) {
+        bind(name, LCore.Method, new HostMethod(Symbol.get(name), arguments, body));
     }
 
     public final void bind(final IType type) {

@@ -1,7 +1,4 @@
-* add ScriptMethod
-
-* add vm call stack
-
-* add method macro
-
+* add file loading from main
 * fib
+* benchmark
+* add tail fib

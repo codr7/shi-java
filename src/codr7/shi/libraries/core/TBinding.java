@@ -7,18 +7,13 @@ import codr7.shi.VM;
 
 import java.io.PrintStream;
 
-public final class TBool extends ScriptType<Boolean> {
-    public TBool(final String name, final IType... parents) {
+public final class TBinding extends ScriptType<Integer> {
+    public TBinding(final String name, final IType... parents) {
         super(name, parents);
     }
 
     @Override
-    public boolean asBool(final IValue value) {
-        return value.cast(this);
-    }
-
-    @Override
     public void dump(final IValue value, final VM vm, final PrintStream out) {
-        out.print(value.cast(this) ? 'T' : 'F');
+        out.print("#" + value.cast(this));
     }
 }

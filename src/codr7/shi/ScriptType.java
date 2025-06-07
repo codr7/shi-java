@@ -11,7 +11,7 @@ public abstract class ScriptType<T> implements IType {
     private final Symbol name;
     private final Set<IType> parents = new HashSet<>();
 
-    public ScriptType(final Symbol name, final IType... parents) {
+    public ScriptType(final Symbol name, final IType[] parents) {
         this.name = name;
 
         for (final var st : parents) {
@@ -20,8 +20,12 @@ public abstract class ScriptType<T> implements IType {
         }
     }
 
+    public ScriptType(final String name, final IType[] parents) {
+        this(Symbol.get(name), parents);
+    }
+
     @Override
-    public void dump(IValue value, PrintStream out) {
+    public void dump(final IValue value, final VM vm, final PrintStream out) {
         out.print(value.cast(this));
     }
 

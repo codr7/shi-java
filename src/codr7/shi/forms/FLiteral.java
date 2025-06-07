@@ -14,12 +14,17 @@ public class FLiteral extends Form {
     }
 
     @Override
-    public void dump(final PrintStream out, final VM vm) {
-        value.dump(out);
+    public void dump(final VM vm, final PrintStream out) {
+        value.dump(vm, out);
     }
 
     @Override
-    public void emit(final Forms in, final VM vm) {
+    public void emit(final VM vm, final Forms in) {
         vm.emit(new OPush(value));
+    }
+
+    @Override
+    public IValue value(final VM vm) {
+        return value;
     }
 }

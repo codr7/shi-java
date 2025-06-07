@@ -7,7 +7,7 @@ public final class Forms {
 
     public void emit(final VM vm) {
         while (!items.isEmpty()) {
-            popFront().emit(this, vm);
+            popFront().emit(vm, this);
         }
     }
 
