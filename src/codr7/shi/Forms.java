@@ -1,9 +1,16 @@
 package codr7.shi;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 
 public final class Forms {
     private final ArrayDeque<Form> items = new ArrayDeque<>();
+
+    public Forms() {}
+
+    public Forms(final Form[] items) {
+        this.items.addAll(Arrays.asList(items));
+    }
 
     public void emit(final VM vm) {
         while (!items.isEmpty()) {

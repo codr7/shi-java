@@ -1,9 +1,7 @@
 package codr7.shi.libraries.core;
 
-import codr7.shi.IType;
-import codr7.shi.IValue;
-import codr7.shi.ScriptType;
-import codr7.shi.VM;
+import codr7.shi.*;
+import codr7.shi.operations.OGet;
 
 import java.io.PrintStream;
 
@@ -15,5 +13,10 @@ public final class TBinding extends ScriptType<Integer> {
     @Override
     public void dump(final IValue value, final VM vm, final PrintStream out) {
         out.print("#" + value.cast(this));
+    }
+
+    @Override
+    public void emit(final IValue value, final VM vm, final Forms in, final Sloc sloc) {
+        vm.emit(new OGet(value.cast(this)));
     }
 }

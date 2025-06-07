@@ -33,9 +33,7 @@ public class FList extends Form {
     @Override
     public void emit(final VM vm, final Forms in) {
         vm.withLibrary(null, () -> {
-            for (final var f : body) {
-                f.emit(vm, in);
-            }
+            new Forms(body).emit(vm);
         });
     }
 }

@@ -2,7 +2,11 @@ package codr7.shi;
 
 import codr7.shi.readers.RForm;
 
+import java.io.IOException;
 import java.io.StringReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +19,7 @@ public class VM {
     private Library currentLibrary = userLibrary;
     private Call callStack = null;
     private Operation.Evaluate[] code = {};
+    private Path path = Paths.get("");
 
     public int allocate(final int n) {
         final var result = registers.size();
@@ -66,6 +71,27 @@ public class VM {
         read(new Input(new StringReader(in), sloc), forms);
         forms.emit(this);
         evaluate(startPc, -1, stack);
+    }
+
+    public void load(final Path path) {
+        final var prevPath = this.path;
+        final var p = prevPath.resolve(path);
+        final var sloc = new Sloc(p.toString());
+        this.path = p.getParent();
+
+        try {
+            final var forms = new Forms();
+
+            try {
+                read(new Input(Files.newBufferedReader(p), sloc), forms);
+            } catch (final IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            forms.emit(this);
+        } finally {
+            this.path = prevPath;
+        }
     }
 
     public Call popCall() {

@@ -13,7 +13,7 @@ public final class HostMacro extends Macro {
     @Override
     public void call(final VM vm, final Forms in, final Sloc sloc) {
         if (in.length() < arguments.length) {
-            throw new EEmit(sloc, "Not enough arguments");
+            throw new EEmit(sloc, "Not enough arguments: " + name);
         }
 
         body.call(vm, in, sloc);

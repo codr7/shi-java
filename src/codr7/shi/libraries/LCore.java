@@ -123,5 +123,14 @@ public class LCore extends Library {
                     vm.emit(new OReturn());
                     end.pc = vm.emitPc();
                 });
+
+        bindMethod("say",
+                new Method.Arguments()
+                        .add("what", Int),
+                (final VM vm, final Values stack, final Sloc sloc) -> {
+                    stack.pop().write(vm, System.out);
+                    System.out.println();
+                });
+
     }
 }

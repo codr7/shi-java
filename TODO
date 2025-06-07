@@ -1,4 +1,4 @@
-* add file loading from main
-* fib
+* fix fib
+** backup/restore registers
 * benchmark
 * add tail fib

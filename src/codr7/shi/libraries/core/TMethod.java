@@ -11,10 +11,9 @@ public final class TMethod extends ScriptType<Method> {
     @Override
     public void emit(final IValue value, final VM vm, final Forms in, final Sloc sloc) {
         final var m = value.cast(this);
-        final var emitArgs = new Forms();
 
         for (final var a : m.arguments) {
-            in.popFront().emit(vm, emitArgs);
+            in.popFront().emit(vm, in);
         }
 
         vm.emit(new OCall(sloc, m));

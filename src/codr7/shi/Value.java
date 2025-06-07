@@ -21,4 +21,10 @@ public record Value<T>(ScriptType<T> type, T value) implements IValue {
     public boolean isa(final IType type) {
         return this.type == type || type.subtypeOf(type);
     }
+
+    @Override
+    public void write(final VM vm, final PrintStream out) {
+        type.write(this, vm, out);
+    }
+
 }
