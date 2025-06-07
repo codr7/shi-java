@@ -26,7 +26,7 @@ public abstract class ScriptType<T> implements IType {
     }
 
     @Override
-    public void emit(final IValue value, final Sloc sloc, final Forms in, final VM vm) {
+    public void emit(final IValue value, final VM vm, final Forms in, final Sloc sloc) {
         vm.emit(new OPush(value));
     }
 

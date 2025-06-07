@@ -4,7 +4,7 @@ import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class OGet implements Operation {
+public final class OGet implements Operation {
     private final int rSource;
 
     public OGet(final int rSource) {

@@ -5,7 +5,7 @@ import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class OBranch implements Operation {
+public final class OBranch implements Operation {
     private final Label end;
 
     public OBranch(final Label end) {

@@ -4,7 +4,7 @@ import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class OPut implements Operation {
+public final class OPut implements Operation {
     private final int rTarget;
 
     public OPut(final int rTarget) {

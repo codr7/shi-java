@@ -1,5 +1,7 @@
-* add macros
-** add if macro
-** add method macro
+* add ScriptMethod
+
+* add vm call stack
+
+* add method macro
 
 * fib

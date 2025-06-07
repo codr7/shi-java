@@ -26,6 +26,6 @@ public class FId extends Form {
             throw new EEmit(sloc, "Unknown identifer: " + name);
         }
 
-        v.emit(sloc, in, vm);
+        v.emit(vm, in, sloc);
     }
 }

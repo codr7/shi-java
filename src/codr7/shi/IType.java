@@ -14,7 +14,7 @@ public interface IType {
         return value;
     }
 
-    void emit(IValue value, Sloc sloc, Forms in, VM vm);
+    void emit(IValue value, VM vm, Forms in, Sloc sloc);
 
     Symbol name();
 

@@ -2,13 +2,17 @@ package codr7.shi;
 
 import java.util.ArrayDeque;
 
-final public class Forms {
+public final class Forms {
     private final ArrayDeque<Form> items = new ArrayDeque<>();
 
     public void emit(final VM vm) {
         while (!items.isEmpty()) {
             popFront().emit(this, vm);
         }
+    }
+
+    public int length() {
+        return items.size();
     }
 
     public Form peekFront() {

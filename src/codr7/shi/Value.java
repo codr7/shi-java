@@ -13,8 +13,8 @@ public record Value<T>(ScriptType<T> type, T value) implements IValue {
         type.dump(this, out);
     }
 
-    public void emit(final Sloc sloc, final Forms in, final VM vm) {
-        type.emit(this, sloc, in, vm);
+    public void emit(final VM vm, final Forms in, final Sloc sloc) {
+        type.emit(this, vm, in, sloc);
     }
 
     @Override

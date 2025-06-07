@@ -5,7 +5,7 @@ import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class OGoto implements Operation {
+public final class OGoto implements Operation {
     private final Label target;
 
     public OGoto(final Label target) {

@@ -5,7 +5,7 @@ import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
 
-public class OPush implements Operation {
+public final class OPush implements Operation {
     private final IValue value;
 
     public OPush(final IValue value) {

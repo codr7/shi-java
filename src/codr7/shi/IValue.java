@@ -15,7 +15,7 @@ public interface IValue {
 
     void dump(PrintStream out);
 
-    void emit(Sloc sloc, Forms in, VM vm);
+    void emit(VM vm, Forms in, Sloc sloc);
 
     boolean isa(IType type);
 

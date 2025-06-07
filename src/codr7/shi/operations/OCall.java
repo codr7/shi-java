@@ -3,7 +3,7 @@ package codr7.shi.operations;
 import codr7.shi.*;
 import codr7.shi.errors.EEval;
 
-public class OCall implements Operation {
+public final class OCall implements Operation {
     private final Sloc sloc;
     private final Method target;
 
@@ -20,7 +20,7 @@ public class OCall implements Operation {
             final var sl = stack.length();
 
             if (sl < al) {
-                throw new EEval(sloc, "Not enough args");
+                throw new EEval(sloc, "Not enough arguments");
             }
 
             for (var i = 0; i < al; i++) {
@@ -32,7 +32,7 @@ public class OCall implements Operation {
                 }
             }
 
-            return target.call(sloc, pc + 1, stack, vm);
+            return target.call(vm, pc + 1, stack, sloc);
         };
     }
 }

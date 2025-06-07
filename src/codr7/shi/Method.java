@@ -9,7 +9,7 @@ public abstract class Method {
         this.args = args;
     }
 
-    public abstract int call(final Sloc sloc, final int pc, final Values stack, final VM vm);
+    public abstract int call(VM vm, int pc, Values stack, Sloc sloc);
 
     public record Arg(String name, IType type) {
     }

@@ -23,7 +23,11 @@ public class Library {
         bind(key, new Value<>(type, value));
     }
 
-    public final void bind(final Symbol name, final Method.Arg[] args, final HostMethod.Body body) {
+    public final void bindMacro(final Symbol name, final String[] args, final HostMacro.Body body) {
+        bind(name, LCore.Macro, new HostMacro(name, args, body));
+    }
+
+    public final void bindMethod(final Symbol name, final Method.Arg[] args, final HostMethod.Body body) {
         bind(name, LCore.Method, new HostMethod(name, args, body));
     }
 
