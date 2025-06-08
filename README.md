@@ -11,5 +11,8 @@ java -jar shi.jar ../shi/benchmarks/run.shi
 ## Implementation
 The implementation weighs in at roughly 1.3kloc.
 
+### Values
+Values and types are divided into two parts, an untyped interface (`IType`/`IValue`) and a typed implementation (`ScriptType`/`Value`).
+
 ### VM
 VM operations are compiled to closures that return the next PC, the evaluation loop calls the next closure until the specified end PC is reached.
