@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="shi:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/shi_jar</output-path>
+    <root id="archive" name="shi.jar">
+      <element id="module-output" name="shi" />
+    </root>
+  </artifact>
+</component>
