@@ -17,7 +17,7 @@ public final class OPut implements Operation {
     public Evaluate compile(final VM vm, final int pc) {
         return (final Values stack) -> {
             for (var i = 0; i < count; i++) {
-                vm.registers.set(rTarget + i, stack.pop());
+                vm.registers[rTarget + i] = stack.pop();
             }
 
             return pc + 1;

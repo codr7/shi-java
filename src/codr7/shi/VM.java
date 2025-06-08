@@ -12,7 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VM {
-    public final ArrayList<IValue> registers = new ArrayList<>();
+    public IValue[] registers = {};
+    private int registerCount = 0;
     private final Reader reader = RForm.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
     private final Library userLibrary = new Library("user", null);
@@ -21,13 +22,9 @@ public class VM {
     private Operation.Evaluate[] code = {};
     private Path path = Paths.get("");
 
-    public int allocate(final int n) {
-        final var result = registers.size();
-
-        for (var i = 0; i < n; i++) {
-            registers.add(null);
-        }
-
+    public int allocate(final int count) {
+        final var result = registerCount;
+        registerCount += count;
         return result;
     }
 
@@ -58,6 +55,10 @@ public class VM {
 
         if (code.length < operations.size()) {
             compile(code.length);
+        }
+
+        if (registers.length < registerCount) {
+            registers = Arrays.copyOf(registers, registerCount);
         }
 
         for (var pc = fromPc; pc < toPc; pc = code[pc].eval(stack)) {
@@ -98,21 +99,21 @@ public class VM {
         final var result = callStack;
         callStack = result.parent();
 
-        for (var i = 0; i < result.registers().length; i++) {
-            this.registers.set(result.target().rArguments + i, result.registers()[i]);
-        }
+        System.arraycopy(
+                result.registers(), 0,
+                registers, result.target().rArguments,
+                result.target().arguments.length);
 
         return result;
     }
 
     public void pushCall(Sloc sloc, ScriptMethod target, int returnPc) {
-        final var registers = new IValue[target.arguments.length];
+        final var callRegisters = Arrays.copyOfRange(
+                registers,
+                target.rArguments,
+                target.rArguments + target.arguments.length);
 
-        for (var i = 0; i < registers.length; i++) {
-            registers[i] = this.registers.get(target.rArguments + i);
-        }
-
-        callStack = new Call(callStack, sloc, target, registers, returnPc);
+        callStack = new Call(callStack, sloc, target, callRegisters, returnPc);
     }
 
     public void read(final Input in, final Forms out) {

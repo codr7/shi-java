@@ -1,0 +1,10 @@
+PT0.894753804S
+PT0.947644579S
+PT1.125804816S
+
+* allocate registers like operations
+** private/pass as arg to op/method eval?
+** benchmark
+* add jar
+* Add shi/tests.shi
+** Add check macro
