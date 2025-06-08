@@ -10,9 +10,9 @@ import java.time.Duration;
 
 public final class OBenchmark implements Operation {
     private final Label end;
-    private final int rounds;
+    private final long rounds;
 
-    public OBenchmark(final int rounds, final Label end) {
+    public OBenchmark(final long rounds, final Label end) {
         this.rounds = rounds;
         this.end = end;
     }

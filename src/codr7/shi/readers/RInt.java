@@ -9,7 +9,7 @@ public class RInt implements Reader {
 
     public boolean read(final VM vm, final Input in, final Forms out) {
         final var formSloc = in.sloc().dup();
-        var v = 0;
+        var v = 0L;
 
         for (; ; ) {
             final var c = in.get();
