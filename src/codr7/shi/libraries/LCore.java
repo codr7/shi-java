@@ -79,6 +79,16 @@ public class LCore extends Library {
                     stack.push(Bool, x < y);
                 });
 
+        bindMethod(">",
+                new Method.Arguments()
+                        .add("x", Int)
+                        .add("y", Int),
+                (final VM vm, final Values stack, final Sloc sloc) -> {
+                    final var y = stack.pop().cast(Int);
+                    final var x = stack.pop().cast(Int);
+                    stack.push(Bool, x > y);
+                });
+
         bindMacro("benchmark",
                 new Macro.Arguments()
                         .add("rounds")
