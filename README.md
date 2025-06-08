@@ -1,4 +1,4 @@
-# shi/Java
+# shi-java
 a Simple Hackable Interpreter in Java
 
 ## Notes
