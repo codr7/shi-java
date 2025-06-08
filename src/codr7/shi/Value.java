@@ -18,6 +18,11 @@ public record Value<T>(ScriptType<T> type, T value) implements IValue {
     }
 
     @Override
+    public boolean equals(final IValue other) {
+        return other.type() == type && type.equals(this, other);
+    }
+
+    @Override
     public boolean isa(final IType type) {
         return this.type == type || this.type.subtypeOf(type);
     }

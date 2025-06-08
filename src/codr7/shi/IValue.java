@@ -15,6 +15,8 @@ public interface IValue extends Dumper {
 
     void emit(VM vm, Forms in, Sloc sloc);
 
+    boolean equals(IValue other);
+
     boolean isa(IType type);
 
     IType type();

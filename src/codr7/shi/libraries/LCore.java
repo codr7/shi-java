@@ -49,6 +49,26 @@ public class LCore extends Library {
                     stack.push(Int, x - y);
                 });
 
+        bindMethod("*",
+                new Method.Arguments()
+                        .add("x", Int)
+                        .add("y", Int),
+                (final VM vm, final Values stack, final Sloc sloc) -> {
+                    final var y = stack.pop().cast(Int);
+                    final var x = stack.pop().cast(Int);
+                    stack.push(Int, x * y);
+                });
+
+        bindMethod("=",
+                new Method.Arguments()
+                        .add("x", Any)
+                        .add("y", Any),
+                (final VM vm, final Values stack, final Sloc sloc) -> {
+                    final var y = stack.pop();
+                    final var x = stack.pop();
+                    stack.push(Bool, x.equals(y));
+                });
+
         bindMethod("<",
                 new Method.Arguments()
                         .add("x", Int)
@@ -105,9 +125,11 @@ public class LCore extends Library {
 
                     for (var i = 0; i < argForms.length; i++) {
                         final var argName = argForms[i].cast(FId.class).name;
-                        final var argType = (argForms.length > i + 1) ? argForms[i + 1].value(vm, LCore.Meta) : null;
+                        var argType = (argForms.length > i + 1) ? argForms[i + 1].value(vm, LCore.Meta) : null;
 
-                        if (argType != null) {
+                        if (argType == null) {
+                            argType = Any;
+                        } else {
                             i++;
                         }
 

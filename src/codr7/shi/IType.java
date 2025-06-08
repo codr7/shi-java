@@ -16,6 +16,10 @@ public interface IType {
 
     void emit(IValue value, VM vm, Forms in, Sloc sloc);
 
+    default boolean equals(IValue left, IValue right) {
+        return left.value().equals(right.value());
+    }
+
     Symbol name();
 
     Stream<IType> parents();
