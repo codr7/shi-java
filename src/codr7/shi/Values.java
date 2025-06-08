@@ -3,8 +3,12 @@ package codr7.shi;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-final public class Values {
+public final class Values {
     private final ArrayList<IValue> items = new ArrayList<>();
+
+    public void clear() {
+        items.clear();
+    }
 
     public void dump(final VM vm, final PrintStream out) {
         out.print('[');

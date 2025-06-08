@@ -4,18 +4,17 @@ import codr7.shi.*;
 import codr7.shi.forms.FId;
 import codr7.shi.forms.FList;
 import codr7.shi.libraries.core.*;
-import codr7.shi.operations.OBranch;
-import codr7.shi.operations.OGoto;
-import codr7.shi.operations.OPut;
-import codr7.shi.operations.OReturn;
+import codr7.shi.operations.*;
 
 public class LCore extends Library {
-    public static final TBinding Binding = new TBinding("Binding");
-    public static final TBool Bool = new TBool("Bool");
-    public static final TInt Int = new TInt("Int");
-    public static final TMacro Macro = new TMacro("Macro");
-    public static final TMeta Meta = new TMeta("Meta");
-    public static final TMethod Method = new TMethod("Method");
+    public static final IType Any = new Trait("Any");
+    public static final TBinding Binding = new TBinding("Binding", Any);
+    public static final TBool Bool = new TBool("Bool", Any);
+    public static final TInt Int = new TInt("Int", Any);
+    public static final TMacro Macro = new TMacro("Macro", Any);
+    public static final TMeta Meta = new TMeta("Meta", Any);
+    public static final TMethod Method = new TMethod("Method", Any);
+    public static final TTime Time = new TTime("Time", Any);
 
     public LCore() {
         super("core", null);
@@ -58,6 +57,18 @@ public class LCore extends Library {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Bool, x < y);
+                });
+
+        bindMacro("benchmark",
+                new Macro.Arguments()
+                        .add("rounds")
+                        .add("body"),
+                (final VM vm, final Forms in, final Sloc sloc) -> {
+                    final var rounds = in.popFront().value(vm, Int);
+                    final var end = new Label();
+                    vm.emit(new OBenchmark(rounds, end));
+                    in.popFront().emit(vm, in);
+                    end.pc = vm.emitPc();
                 });
 
         bindMacro("if",
@@ -126,7 +137,7 @@ public class LCore extends Library {
 
         bindMethod("say",
                 new Method.Arguments()
-                        .add("what", Int),
+                        .add("what", Any),
                 (final VM vm, final Values stack, final Sloc sloc) -> {
                     stack.pop().write(vm, System.out);
                     System.out.println();

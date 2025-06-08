@@ -53,14 +53,14 @@ public class VM {
 
     public void evaluate(final int fromPc, int toPc, final Values stack) {
         if (toPc == -1) {
-            toPc = operations.size() - 1;
+            toPc = operations.size();
         }
 
         if (code.length < operations.size()) {
             compile(code.length);
         }
 
-        for (var pc = fromPc; pc <= toPc; pc = code[pc].eval(stack)) {
+        for (var pc = fromPc; pc < toPc; pc = code[pc].eval(stack)) {
             // Do nothing
         }
     }

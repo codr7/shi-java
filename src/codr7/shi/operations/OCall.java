@@ -20,7 +20,7 @@ public final class OCall implements Operation {
             final var sl = stack.length();
 
             if (sl < al) {
-                throw new EEvaluate(sloc, "Not enough arguments");
+                throw new EEvaluate(sloc, "Not enough arguments: " + target.name);
             }
 
             for (var i = 0; i < al; i++) {
