@@ -9,12 +9,12 @@ public final class HostMethod extends Method {
     }
 
     @Override
-    public int call(final VM vm, final int pc, final Values stack, final Sloc sloc) {
-        body.call(vm, stack, sloc);
+    public int call(final VM vm, final int pc, final Values stack, final IValue[] registers, final Sloc sloc) {
+        body.call(vm, stack, registers, sloc);
         return pc;
     }
 
     public interface Body {
-        void call(VM vm, Values stack, Sloc sloc);
+        void call(VM vm, Values stack, IValue[] registers, Sloc sloc);
     }
 }

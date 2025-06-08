@@ -1,9 +1,6 @@
 package codr7.shi.operations;
 
-import codr7.shi.Label;
-import codr7.shi.Operation;
-import codr7.shi.VM;
-import codr7.shi.Values;
+import codr7.shi.*;
 
 public final class OBranch implements Operation {
     private final Label end;
@@ -14,6 +11,6 @@ public final class OBranch implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack) -> stack.pop().asBool() ? pc + 1 : end.pc;
+        return (final Values stack, final IValue[] registers) -> stack.pop().asBool() ? pc + 1 : end.pc;
     }
 }

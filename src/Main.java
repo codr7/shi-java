@@ -16,7 +16,7 @@ public class Main {
         } else {
             final var startPc = vm.emitPc();
 
-            for (final var a: arguments) {
+            for (final var a : arguments) {
                 vm.load(Path.of(a));
             }
 

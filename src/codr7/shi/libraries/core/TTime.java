@@ -3,6 +3,7 @@ package codr7.shi.libraries.core;
 import codr7.shi.IType;
 import codr7.shi.IValue;
 import codr7.shi.ScriptType;
+
 import java.time.Duration;
 
 public final class TTime extends ScriptType<Duration> {

@@ -12,11 +12,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VM {
-    public IValue[] registers = {};
-    private int registerCount = 0;
     private final Reader reader = RForm.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
     private final Library userLibrary = new Library("user", null);
+    private IValue[] registers = {};
+    private int registerCount = 0;
     private Library currentLibrary = userLibrary;
     private Call callStack = null;
     private Operation.Evaluate[] code = {};
@@ -61,7 +61,7 @@ public class VM {
             registers = Arrays.copyOf(registers, registerCount);
         }
 
-        for (var pc = fromPc; pc < toPc; pc = code[pc].eval(stack)) {
+        for (var pc = fromPc; pc < toPc; pc = code[pc].eval(stack, registers)) {
             // Do nothing
         }
     }

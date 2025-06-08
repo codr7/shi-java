@@ -14,7 +14,7 @@ public final class OCall implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack) -> {
+        return (final Values stack, final IValue[] registers) -> {
             final var as = target.arguments;
             final var al = as.length;
             final var sl = stack.length();
@@ -32,7 +32,7 @@ public final class OCall implements Operation {
                 }
             }
 
-            return target.call(vm, pc + 1, stack, sloc);
+            return target.call(vm, pc + 1, stack, registers, sloc);
         };
     }
 }

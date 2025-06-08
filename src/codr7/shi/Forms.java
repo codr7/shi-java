@@ -6,7 +6,8 @@ import java.util.Arrays;
 public final class Forms {
     private final ArrayDeque<Form> items = new ArrayDeque<>();
 
-    public Forms() {}
+    public Forms() {
+    }
 
     public Forms(final Form[] items) {
         this.items.addAll(Arrays.asList(items));

@@ -1,9 +1,6 @@
 package codr7.shi.operations;
 
-import codr7.shi.Label;
-import codr7.shi.Operation;
-import codr7.shi.VM;
-import codr7.shi.Values;
+import codr7.shi.*;
 
 public final class OGoto implements Operation {
     private final Label target;
@@ -14,6 +11,6 @@ public final class OGoto implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack) -> target.pc;
+        return (final Values stack, final IValue[] registers) -> target.pc;
     }
 }

@@ -1,9 +1,6 @@
 package codr7.shi.operations;
 
-import codr7.shi.Label;
-import codr7.shi.Operation;
-import codr7.shi.VM;
-import codr7.shi.Values;
+import codr7.shi.*;
 import codr7.shi.libraries.LCore;
 
 import java.time.Duration;
@@ -19,7 +16,7 @@ public final class OBenchmark implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack) -> {
+        return (final Values stack, final IValue[] registers) -> {
             final var bodyStack = new Values();
             final var startTime = System.nanoTime();
 

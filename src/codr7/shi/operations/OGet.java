@@ -1,5 +1,6 @@
 package codr7.shi.operations;
 
+import codr7.shi.IValue;
 import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Values;
@@ -13,8 +14,8 @@ public final class OGet implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack) -> {
-            stack.push(vm.registers[rSource]);
+        return (final Values stack, final IValue[] registers) -> {
+            stack.push(registers[rSource]);
             return pc + 1;
         };
     }

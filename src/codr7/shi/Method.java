@@ -11,7 +11,7 @@ public abstract class Method {
         this.arguments = arguments.toArray();
     }
 
-    public abstract int call(VM vm, int pc, Values stack, Sloc sloc);
+    public abstract int call(VM vm, int pc, Values stack, IValue[] registers, Sloc sloc);
 
     public record Argument(Symbol name, IType type) {
     }

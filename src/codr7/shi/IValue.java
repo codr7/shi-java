@@ -22,5 +22,6 @@ public interface IValue extends Dumper {
     IType type();
 
     Object value();
+
     void write(final VM vm, final PrintStream out);
 }

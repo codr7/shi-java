@@ -4,6 +4,6 @@ public interface Operation {
     Evaluate compile(VM vm, int pc);
 
     interface Evaluate {
-        int eval(Values stack);
+        int eval(Values stack, IValue[] registers);
     }
 }

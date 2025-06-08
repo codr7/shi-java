@@ -14,7 +14,7 @@ public final class OPush implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack) -> {
+        return (final Values stack, final IValue[] registers) -> {
             stack.push(value);
             return pc + 1;
         };
