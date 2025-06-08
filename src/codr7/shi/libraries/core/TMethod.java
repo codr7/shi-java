@@ -16,6 +16,6 @@ public final class TMethod extends ScriptType<Method> {
             in.popFront().emit(vm, in);
         }
 
-        vm.emit(new OCall(sloc, m));
+        vm.emit(new OCall(m, sloc));
     }
 }

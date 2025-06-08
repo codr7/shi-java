@@ -101,6 +101,16 @@ public class LCore extends Library {
                     end.pc = vm.emitPc();
                 });
 
+        bindMacro("check",
+                new Macro.Arguments()
+                        .add("expected")
+                        .add("actual"),
+                (final VM vm, final Forms in, final Sloc sloc) -> {
+                    final var expected = in.popFront().value(vm);
+                    in.popFront().emit(vm, in);
+                    vm.emit(new OCheck(expected, sloc));
+                });
+
         bindMacro("if",
                 new Macro.Arguments()
                         .add("cond")
