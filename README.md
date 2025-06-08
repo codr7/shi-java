@@ -9,4 +9,7 @@ java -jar shi.jar ../shi/benchmarks/run.shi
 ```
 
 ## Implementation
-Operations are compiled to closures before evaluation.
+The implementation weighs in at roughly 1.3kloc.
+
+### VM
+VM operations are compiled to closures that return the next PC, the evaluation loop calls the next closure until the specified end PC is reached.
