@@ -5,7 +5,7 @@ import java.io.PrintStream;
 public interface IValue extends Dumper {
     boolean asBool();
 
-    default <T> T cast(final ScriptType<T> type) {
+    default <T> T cast(final CellType<T> type) {
         if (type != this.type()) {
             throw new RuntimeException("Type mismatch: expected " + this.type() + ", actual: " + type);
         }
@@ -13,13 +13,17 @@ public interface IValue extends Dumper {
         return (T) value();
     }
 
+    default IValue dup() {
+        return this;
+    }
+
     void emit(VM vm, Forms in, Sloc sloc);
 
     boolean equals(IValue other);
 
-    boolean isa(IType type);
+    boolean isa(ICellType type);
 
-    IType type();
+    ICellType type();
 
     Object value();
 

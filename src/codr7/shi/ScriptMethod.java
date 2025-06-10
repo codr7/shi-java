@@ -14,7 +14,7 @@ public final class ScriptMethod extends Method {
     }
 
     @Override
-    public int call(final VM vm, final int pc, final Values stack, final IValue[] registers, final Sloc sloc) {
+    public int call(final VM vm, final int pc, final Cells stack, final IValue[] registers, final Sloc sloc) {
         vm.pushCall(sloc, this, pc);
         return startPc;
     }

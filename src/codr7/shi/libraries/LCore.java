@@ -7,7 +7,7 @@ import codr7.shi.libraries.core.*;
 import codr7.shi.operations.*;
 
 public class LCore extends Library {
-    public static final IType Any = new Trait("Any");
+    public static final ICellType Any = new Trait("Any");
     public static final TBinding Binding = new TBinding("Binding", Any);
     public static final TBool Bool = new TBool("Bool", Any);
     public static final TInt Int = new TInt("Int", Any);
@@ -26,14 +26,14 @@ public class LCore extends Library {
         bind(Meta);
         bind(Method);
 
-        bind("T", new Value<>(Bool, true));
-        bind("F", new Value<>(Bool, false));
+        bind("T", new Cell<>(Bool, true));
+        bind("F", new Cell<>(Bool, false));
 
         bindMethod("+",
                 new Method.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Values stack, final IValue[] registers, final Sloc sloc) -> {
+                (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Int, x + y);
@@ -43,7 +43,7 @@ public class LCore extends Library {
                 new Method.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Values stack, final IValue[] registers, final Sloc sloc) -> {
+                (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Int, x - y);
@@ -53,7 +53,7 @@ public class LCore extends Library {
                 new Method.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Values stack, final IValue[] registers, final Sloc sloc) -> {
+                (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Int, x * y);
@@ -63,7 +63,7 @@ public class LCore extends Library {
                 new Method.Arguments()
                         .add("x", Any)
                         .add("y", Any),
-                (final VM vm, final Values stack, final IValue[] registers, final Sloc sloc) -> {
+                (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
                     final var y = stack.pop();
                     final var x = stack.pop();
                     stack.push(Bool, x.equals(y));
@@ -73,7 +73,7 @@ public class LCore extends Library {
                 new Method.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Values stack, final IValue[] registers, final Sloc sloc) -> {
+                (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Bool, x < y);
@@ -83,7 +83,7 @@ public class LCore extends Library {
                 new Method.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Values stack, final IValue[] registers, final Sloc sloc) -> {
+                (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Bool, x > y);
@@ -160,13 +160,13 @@ public class LCore extends Library {
                     vm.emit(new OGoto(end));
                     final var rArgs = vm.allocate(args.length());
                     final var m = new ScriptMethod(name, args, rArgs, vm.emitPc());
-                    vm.currentLibrary().bind(name, new Value<>(LCore.Method, m));
+                    vm.currentLibrary().bind(name, new Cell<>(LCore.Method, m));
 
                     vm.withLibrary(null, () -> {
                         for (var i = 0; i < m.arguments.length; i++) {
                             vm.currentLibrary().bind(
                                     m.arguments[m.arguments.length - i - 1].name(),
-                                    new Value<>(Binding, rArgs + i));
+                                    new Cell<>(Binding, rArgs + i));
                         }
 
                         vm.emit(new OPut(rArgs, m.arguments.length));
@@ -180,7 +180,7 @@ public class LCore extends Library {
         bindMethod("say",
                 new Method.Arguments()
                         .add("what", Any),
-                (final VM vm, final Values stack, final IValue[] registers, final Sloc sloc) -> {
+                (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
                     stack.pop().write(vm, System.out);
                     System.out.println();
                 });

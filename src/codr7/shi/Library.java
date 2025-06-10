@@ -27,11 +27,11 @@ public class Library {
         bind(Symbol.get(key), value);
     }
 
-    public final <T> void bind(final Symbol key, final ScriptType<T> type, final T value) {
-        bind(key, new Value<>(type, value));
+    public final <T> void bind(final Symbol key, final CellType<T> type, final T value) {
+        bind(key, new Cell<>(type, value));
     }
 
-    public final <T> void bind(final String key, final ScriptType<T> type, final T value) {
+    public final <T> void bind(final String key, final CellType<T> type, final T value) {
         bind(Symbol.get(key), type, value);
     }
 
@@ -43,7 +43,7 @@ public class Library {
         bind(name, LCore.Method, new HostMethod(Symbol.get(name), arguments, body));
     }
 
-    public final void bind(final IType type) {
+    public final void bind(final ICellType type) {
         bind(type.name(), LCore.Meta, type);
     }
 

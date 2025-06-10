@@ -11,20 +11,20 @@ public abstract class Method {
         this.arguments = arguments.toArray();
     }
 
-    public abstract int call(VM vm, int pc, Values stack, IValue[] registers, Sloc sloc);
+    public abstract int call(VM vm, int pc, Cells stack, IValue[] registers, Sloc sloc);
 
-    public record Argument(Symbol name, IType type) {
+    public record Argument(Symbol name, ICellType type) {
     }
 
     public static final class Arguments {
         private final ArrayList<Argument> items = new ArrayList<>();
 
-        public Method.Arguments add(final Symbol name, IType type) {
+        public Method.Arguments add(final Symbol name, ICellType type) {
             items.add(new Argument(name, type));
             return this;
         }
 
-        public Method.Arguments add(final String name, IType type) {
+        public Method.Arguments add(final String name, ICellType type) {
             return add(Symbol.get(name), type);
         }
 

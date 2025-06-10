@@ -25,7 +25,7 @@ public abstract class Form implements Dumper {
         return null;
     }
 
-    public <T> T value(final VM vm, ScriptType<T> type) {
+    public <T> T value(final VM vm, CellType<T> type) {
         final var v = value(vm);
         return (v == null) ? null : v.cast(type);
     }

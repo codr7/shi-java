@@ -3,7 +3,7 @@ package codr7.shi.operations;
 import codr7.shi.IValue;
 import codr7.shi.Operation;
 import codr7.shi.VM;
-import codr7.shi.Values;
+import codr7.shi.Cells;
 
 public final class OPush implements Operation {
     private final IValue value;
@@ -14,8 +14,8 @@ public final class OPush implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack, final IValue[] registers) -> {
-            stack.push(value);
+        return (final Cells stack, final IValue[] registers) -> {
+            stack.push(value.dup());
             return pc + 1;
         };
     }

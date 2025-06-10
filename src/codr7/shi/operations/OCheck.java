@@ -14,7 +14,7 @@ public final class OCheck implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack, final IValue[] registers) -> {
+        return (final Cells stack, final IValue[] registers) -> {
             final var actual = stack.pop();
 
             if (!actual.equals(expected)) {

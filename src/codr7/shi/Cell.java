@@ -2,7 +2,7 @@ package codr7.shi;
 
 import java.io.PrintStream;
 
-public record Value<T>(ScriptType<T> type, T value) implements IValue {
+public record Cell<T>(CellType<T> type, T value) implements IValue {
     @Override
     public boolean asBool() {
         return type.asBool(this);
@@ -23,7 +23,7 @@ public record Value<T>(ScriptType<T> type, T value) implements IValue {
     }
 
     @Override
-    public boolean isa(final IType type) {
+    public boolean isa(final ICellType type) {
         return this.type == type || this.type.subtypeOf(type);
     }
 

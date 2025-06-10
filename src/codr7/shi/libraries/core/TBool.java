@@ -1,14 +1,14 @@
 package codr7.shi.libraries.core;
 
-import codr7.shi.IType;
+import codr7.shi.ICellType;
 import codr7.shi.IValue;
-import codr7.shi.ScriptType;
+import codr7.shi.CellType;
 import codr7.shi.VM;
 
 import java.io.PrintStream;
 
-public final class TBool extends ScriptType<Boolean> {
-    public TBool(final String name, final IType... parents) {
+public final class TBool extends CellType<Boolean> {
+    public TBool(final String name, final ICellType... parents) {
         super(name, parents);
     }
 

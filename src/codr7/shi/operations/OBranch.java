@@ -11,6 +11,6 @@ public final class OBranch implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack, final IValue[] registers) -> stack.pop().asBool() ? pc + 1 : end.pc;
+        return (final Cells stack, final IValue[] registers) -> stack.pop().asBool() ? pc + 1 : end.pc;
     }
 }

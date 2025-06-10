@@ -7,11 +7,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public abstract class ScriptType<T> implements IType {
+public abstract class CellType<T> implements ICellType {
     private final Symbol name;
-    private final Set<IType> parents = new HashSet<>();
+    private final Set<ICellType> parents = new HashSet<>();
 
-    public ScriptType(final Symbol name, final IType[] parents) {
+    public CellType(final Symbol name, final ICellType[] parents) {
         this.name = name;
 
         for (final var st : parents) {
@@ -20,7 +20,7 @@ public abstract class ScriptType<T> implements IType {
         }
     }
 
-    public ScriptType(final String name, final IType[] parents) {
+    public CellType(final String name, final ICellType[] parents) {
         this(Symbol.get(name), parents);
     }
 
@@ -40,12 +40,12 @@ public abstract class ScriptType<T> implements IType {
     }
 
     @Override
-    public final Stream<IType> parents() {
+    public final Stream<ICellType> parents() {
         return parents.stream();
     }
 
     @Override
-    public final boolean subtypeOf(final IType other) {
+    public final boolean subtypeOf(final ICellType other) {
         return parents.contains(other);
     }
 

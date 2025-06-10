@@ -2,8 +2,8 @@ package codr7.shi.libraries.core;
 
 import codr7.shi.*;
 
-public final class TMacro extends ScriptType<Macro> {
-    public TMacro(final String name, final IType... parents) {
+public final class TMacro extends CellType<Macro> {
+    public TMacro(final String name, final ICellType... parents) {
         super(name, parents);
     }
 

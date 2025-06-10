@@ -22,7 +22,7 @@ public class RInt implements Reader {
             v = v * 10 + c - '0';
         }
 
-        out.pushBack(new FLiteral(formSloc, new Value<>(LCore.Int, v)));
+        out.pushBack(new FLiteral(formSloc, new Cell<>(LCore.Int, v)));
         return true;
     }
 }

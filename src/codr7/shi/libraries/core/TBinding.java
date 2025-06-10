@@ -5,8 +5,8 @@ import codr7.shi.operations.OGet;
 
 import java.io.PrintStream;
 
-public final class TBinding extends ScriptType<Integer> {
-    public TBinding(final String name, final IType... parents) {
+public final class TBinding extends CellType<Integer> {
+    public TBinding(final String name, final ICellType... parents) {
         super(name, parents);
     }
 

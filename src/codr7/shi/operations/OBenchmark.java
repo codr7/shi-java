@@ -16,8 +16,8 @@ public final class OBenchmark implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Values stack, final IValue[] registers) -> {
-            final var bodyStack = new Values();
+        return (final Cells stack, final IValue[] registers) -> {
+            final var bodyStack = new Cells();
             final var startTime = System.nanoTime();
 
             for (var i = 0; i < rounds; i++) {

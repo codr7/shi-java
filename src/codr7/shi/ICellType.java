@@ -3,7 +3,7 @@ package codr7.shi;
 import java.io.PrintStream;
 import java.util.stream.Stream;
 
-public interface IType {
+public interface ICellType {
     default boolean asBool(final IValue value) {
         return true;
     }
@@ -22,9 +22,9 @@ public interface IType {
 
     Symbol name();
 
-    Stream<IType> parents();
+    Stream<ICellType> parents();
 
-    boolean subtypeOf(IType other);
+    boolean subtypeOf(ICellType other);
 
     default void write(final IValue value, final VM vm, final PrintStream out) {
         dump(value, vm, out);

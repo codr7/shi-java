@@ -48,7 +48,7 @@ public class VM {
         return operations.size();
     }
 
-    public void evaluate(final int fromPc, int toPc, final Values stack) {
+    public void evaluate(final int fromPc, int toPc, final Cells stack) {
         if (toPc == -1) {
             toPc = operations.size();
         }
@@ -66,7 +66,7 @@ public class VM {
         }
     }
 
-    public void evaluate(final String in, final Values stack, final Sloc sloc) {
+    public void evaluate(final String in, final Cells stack, final Sloc sloc) {
         final var startPc = emitPc();
         final var forms = new Forms();
         read(new Input(new StringReader(in), sloc), forms);

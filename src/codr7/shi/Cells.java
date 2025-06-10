@@ -3,7 +3,7 @@ package codr7.shi;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-public final class Values {
+public final class Cells {
     private final ArrayList<IValue> items = new ArrayList<>();
 
     public void clear() {
@@ -42,7 +42,7 @@ public final class Values {
         items.add(it);
     }
 
-    public <T> void push(final ScriptType<T> type, final T value) {
-        push(new Value<>(type, value));
+    public <T> void push(final CellType<T> type, final T value) {
+        push(new Cell<>(type, value));
     }
 }

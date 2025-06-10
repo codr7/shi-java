@@ -14,7 +14,7 @@ public class Shell {
         this.out = out;
     }
 
-    public void run(final Values stack) {
+    public void run(final Cells stack) {
         final var inputBuffer = new StringBuilder();
         final var sloc = new Sloc("repl");
         var lineIndex = 0;
