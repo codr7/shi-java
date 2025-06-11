@@ -1,4 +1,8 @@
 package codr7.shi;
 
-public record Call(Call parent, Sloc sloc, ShiMethod target, IValue[] registers, int returnPc) {
+public record Call(Call parent,
+                   ShiMethod target,
+                   Sloc sloc,
+                   IValue[] argumentRegisters,
+                   int returnPc) {
 }

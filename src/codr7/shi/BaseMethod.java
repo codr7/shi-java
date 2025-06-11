@@ -2,11 +2,11 @@ package codr7.shi;
 
 import java.util.ArrayList;
 
-public abstract class Method {
+public abstract class BaseMethod {
     public final Argument[] arguments;
     public Symbol name;
 
-    public Method(final Symbol name, final Arguments arguments) {
+    public BaseMethod(final Symbol name, final Arguments arguments) {
         this.name = name;
         this.arguments = arguments.toArray();
     }
@@ -19,12 +19,12 @@ public abstract class Method {
     public static final class Arguments {
         private final ArrayList<Argument> items = new ArrayList<>();
 
-        public Method.Arguments add(final Symbol name, ICellType type) {
+        public BaseMethod.Arguments add(final Symbol name, ICellType type) {
             items.add(new Argument(name, type));
             return this;
         }
 
-        public Method.Arguments add(final String name, ICellType type) {
+        public BaseMethod.Arguments add(final String name, ICellType type) {
             return add(Symbol.get(name), type);
         }
 

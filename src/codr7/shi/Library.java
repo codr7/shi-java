@@ -39,7 +39,7 @@ public class Library {
         bind(name, LCore.Macro, new HostMacro(Symbol.get(name), arguments, body));
     }
 
-    public final void bindMethod(final String name, final Method.Arguments arguments, final JavaMethod.Body body) {
+    public final void bindMethod(final String name, final BaseMethod.Arguments arguments, final JavaMethod.Body body) {
         bind(name, LCore.Method, new JavaMethod(Symbol.get(name), arguments, body));
     }
 

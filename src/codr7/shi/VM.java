@@ -100,20 +100,20 @@ public class VM {
         callStack = result.parent();
 
         System.arraycopy(
-                result.registers(), 0,
+                result.argumentRegisters(), 0,
                 registers, result.target().rArguments,
                 result.target().arguments.length);
 
         return result;
     }
 
-    public void pushCall(Sloc sloc, ShiMethod target, int returnPc) {
+    public void pushCall(ShiMethod target, Sloc sloc, int returnPc) {
         final var callRegisters = Arrays.copyOfRange(
                 registers,
                 target.rArguments,
                 target.rArguments + target.arguments.length);
 
-        callStack = new Call(callStack, sloc, target, callRegisters, returnPc);
+        callStack = new Call(callStack, target, sloc, callRegisters, returnPc);
     }
 
     public void read(final Input in, final Forms out) {

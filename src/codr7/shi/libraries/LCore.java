@@ -30,7 +30,7 @@ public class LCore extends Library {
         bind("F", new Cell<>(Bool, false));
 
         bindMethod("+",
-                new Method.Arguments()
+                new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
                 (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
@@ -40,7 +40,7 @@ public class LCore extends Library {
                 });
 
         bindMethod("-",
-                new Method.Arguments()
+                new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
                 (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
@@ -50,7 +50,7 @@ public class LCore extends Library {
                 });
 
         bindMethod("*",
-                new Method.Arguments()
+                new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
                 (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
@@ -60,7 +60,7 @@ public class LCore extends Library {
                 });
 
         bindMethod("=",
-                new Method.Arguments()
+                new BaseMethod.Arguments()
                         .add("x", Any)
                         .add("y", Any),
                 (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
@@ -70,7 +70,7 @@ public class LCore extends Library {
                 });
 
         bindMethod("<",
-                new Method.Arguments()
+                new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
                 (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
@@ -80,7 +80,7 @@ public class LCore extends Library {
                 });
 
         bindMethod(">",
-                new Method.Arguments()
+                new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
                 (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
@@ -141,7 +141,7 @@ public class LCore extends Library {
                 (final VM vm, final Forms in, final Sloc sloc) -> {
                     final var name = in.popFront().cast(FId.class).name;
                     final var argForms = in.popFront().cast(FList.class).body;
-                    final var args = new Method.Arguments();
+                    final var args = new BaseMethod.Arguments();
 
                     for (var i = 0; i < argForms.length; i++) {
                         final var argName = argForms[i].cast(FId.class).name;
@@ -178,7 +178,7 @@ public class LCore extends Library {
                 });
 
         bindMethod("say",
-                new Method.Arguments()
+                new BaseMethod.Arguments()
                         .add("what", Any),
                 (final VM vm, final Cells stack, final IValue[] registers, final Sloc sloc) -> {
                     stack.pop().write(vm, System.out);

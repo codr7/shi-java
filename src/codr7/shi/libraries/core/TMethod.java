@@ -3,7 +3,7 @@ package codr7.shi.libraries.core;
 import codr7.shi.*;
 import codr7.shi.operations.OCall;
 
-public final class TMethod extends CellType<Method> {
+public final class TMethod extends CellType<BaseMethod> {
     public TMethod(final String name, final ICellType... parents) {
         super(name, parents);
     }

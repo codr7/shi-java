@@ -1,6 +1,6 @@
 package codr7.shi;
 
-public final class JavaMethod extends Method {
+public final class JavaMethod extends BaseMethod {
     private final Body body;
 
     public JavaMethod(final Symbol name, final Arguments arguments, final Body body) {

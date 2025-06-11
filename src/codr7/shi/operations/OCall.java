@@ -4,10 +4,10 @@ import codr7.shi.*;
 import codr7.shi.errors.EEvaluate;
 
 public final class OCall implements Operation {
-    private final Method target;
+    private final BaseMethod target;
     private final Sloc sloc;
 
-    public OCall(final Method target, final Sloc sloc) {
+    public OCall(final BaseMethod target, final Sloc sloc) {
         this.sloc = sloc;
         this.target = target;
     }

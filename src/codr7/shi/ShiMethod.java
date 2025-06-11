@@ -1,6 +1,6 @@
 package codr7.shi;
 
-public final class ShiMethod extends Method {
+public final class ShiMethod extends BaseMethod {
     public final int rArguments;
     private final int startPc;
 
@@ -15,7 +15,7 @@ public final class ShiMethod extends Method {
 
     @Override
     public int call(final VM vm, final int pc, final Cells stack, final IValue[] registers, final Sloc sloc) {
-        vm.pushCall(sloc, this, pc);
+        vm.pushCall(this, sloc, pc);
         return startPc;
     }
 }
