@@ -4,17 +4,17 @@ import codr7.shi.*;
 import codr7.shi.errors.EEvaluate;
 
 public final class OCheck implements Operation {
-    private final IValue expected;
+    private final ICell expected;
     private final Sloc sloc;
 
-    public OCheck(final IValue expected, final Sloc sloc) {
+    public OCheck(final ICell expected, final Sloc sloc) {
         this.expected = expected;
         this.sloc = sloc;
     }
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Cells stack, final IValue[] registers) -> {
+        return (final Cells stack, final ICell[] registers) -> {
             final var actual = stack.pop();
 
             if (!actual.equals(expected)) {

@@ -2,10 +2,15 @@ package codr7.shi;
 
 import java.io.PrintStream;
 
-public record Cell<T>(CellType<T> type, T value) implements IValue {
+public record Cell<T>(CellType<T> type, T value) implements ICell {
     @Override
     public boolean asBool() {
         return type.asBool(this);
+    }
+
+    @Override
+    public ICell clone() {
+        return this;
     }
 
     @Override
@@ -18,7 +23,7 @@ public record Cell<T>(CellType<T> type, T value) implements IValue {
     }
 
     @Override
-    public boolean equals(final IValue other) {
+    public boolean equals(final ICell other) {
         return other.type() == type && type.equals(this, other);
     }
 

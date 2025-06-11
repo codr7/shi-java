@@ -21,7 +21,7 @@ public abstract class Form implements Dumper {
 
     public abstract void emit(final VM vm, final Forms in);
 
-    public IValue value(final VM vm) {
+    public ICell value(final VM vm) {
         return null;
     }
 

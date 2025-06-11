@@ -1,7 +1,7 @@
 package codr7.shi.libraries.core;
 
 import codr7.shi.ICellType;
-import codr7.shi.IValue;
+import codr7.shi.ICell;
 import codr7.shi.CellType;
 
 import java.time.Duration;
@@ -12,7 +12,7 @@ public final class TTime extends CellType<Duration> {
     }
 
     @Override
-    public boolean asBool(final IValue value) {
+    public boolean asBool(final ICell value) {
         return !value.cast(this).isZero();
     }
 }

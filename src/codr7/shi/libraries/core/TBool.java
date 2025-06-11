@@ -1,7 +1,7 @@
 package codr7.shi.libraries.core;
 
 import codr7.shi.ICellType;
-import codr7.shi.IValue;
+import codr7.shi.ICell;
 import codr7.shi.CellType;
 import codr7.shi.VM;
 
@@ -13,12 +13,12 @@ public final class TBool extends CellType<Boolean> {
     }
 
     @Override
-    public boolean asBool(final IValue value) {
+    public boolean asBool(final ICell value) {
         return value.cast(this);
     }
 
     @Override
-    public void dump(final IValue value, final VM vm, final PrintStream out) {
+    public void dump(final ICell value, final VM vm, final PrintStream out) {
         out.print(value.cast(this) ? 'T' : 'F');
     }
 }

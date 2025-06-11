@@ -14,7 +14,7 @@ public final class ShiMethod extends BaseMethod {
     }
 
     @Override
-    public int call(final VM vm, final int pc, final Cells stack, final IValue[] registers, final Sloc sloc) {
+    public int call(final VM vm, final int pc, final Cells stack, final ICell[] registers, final Sloc sloc) {
         vm.pushCall(this, sloc, pc);
         return startPc;
     }

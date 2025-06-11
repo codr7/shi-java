@@ -11,7 +11,7 @@ public abstract class BaseMethod {
         this.arguments = arguments.toArray();
     }
 
-    public abstract int call(VM vm, int pc, Cells stack, IValue[] registers, Sloc sloc);
+    public abstract int call(VM vm, int pc, Cells stack, ICell[] registers, Sloc sloc);
 
     public record Argument(Symbol name, ICellType type) {
     }

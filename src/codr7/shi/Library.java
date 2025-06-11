@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Library {
     public final Symbol name;
-    private final Map<Symbol, IValue> bindings = new HashMap<>();
+    private final Map<Symbol, ICell> bindings = new HashMap<>();
     private final Library parent;
 
     public Library(final Symbol name, final Library parent) {
@@ -19,11 +19,11 @@ public class Library {
         this(Symbol.get(name), parent);
     }
 
-    public final void bind(final Symbol key, final IValue value) {
+    public final void bind(final Symbol key, final ICell value) {
         bindings.put(key, value);
     }
 
-    public final void bind(final String key, final IValue value) {
+    public final void bind(final String key, final ICell value) {
         bind(Symbol.get(key), value);
     }
 
@@ -47,7 +47,7 @@ public class Library {
         bind(type.name(), LCore.Meta, type);
     }
 
-    public final IValue find(final Symbol key) {
+    public final ICell find(final Symbol key) {
         final var v = bindings.get(key);
         return (v == null && parent != null) ? parent.find(key) : v;
     }

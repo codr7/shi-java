@@ -2,7 +2,7 @@ package codr7.shi;
 
 import java.io.PrintStream;
 
-public interface IValue extends Dumper {
+public interface ICell extends Dumper {
     boolean asBool();
 
     default <T> T cast(final CellType<T> type) {
@@ -13,13 +13,11 @@ public interface IValue extends Dumper {
         return (T) value();
     }
 
-    default IValue dup() {
-        return this;
-    }
+    ICell clone();
 
     void emit(VM vm, Forms in, Sloc sloc);
 
-    boolean equals(IValue other);
+    boolean equals(ICell other);
 
     boolean isa(ICellType type);
 

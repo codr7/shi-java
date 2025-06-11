@@ -25,12 +25,12 @@ public abstract class CellType<T> implements ICellType {
     }
 
     @Override
-    public void dump(final IValue value, final VM vm, final PrintStream out) {
+    public void dump(final ICell value, final VM vm, final PrintStream out) {
         out.print(value.cast(this));
     }
 
     @Override
-    public void emit(final IValue value, final VM vm, final Forms in, final Sloc sloc) {
+    public void emit(final ICell value, final VM vm, final Forms in, final Sloc sloc) {
         vm.emit(new OPush(value));
     }
 

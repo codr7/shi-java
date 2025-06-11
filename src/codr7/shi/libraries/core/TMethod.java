@@ -9,7 +9,7 @@ public final class TMethod extends CellType<BaseMethod> {
     }
 
     @Override
-    public void emit(final IValue value, final VM vm, final Forms in, final Sloc sloc) {
+    public void emit(final ICell value, final VM vm, final Forms in, final Sloc sloc) {
         final var m = value.cast(this);
 
         for (final var a : m.arguments) {

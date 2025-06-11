@@ -14,7 +14,7 @@ public final class OCall implements Operation {
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
-        return (final Cells stack, final IValue[] registers) -> {
+        return (final Cells stack, final ICell[] registers) -> {
             final var as = target.arguments;
             final var al = as.length;
             final var sl = stack.length();

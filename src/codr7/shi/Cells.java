@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 public final class Cells {
-    private final ArrayList<IValue> items = new ArrayList<>();
+    private final ArrayList<ICell> items = new ArrayList<>();
 
     public void clear() {
         items.clear();
@@ -22,7 +22,7 @@ public final class Cells {
         out.print(']');
     }
 
-    public IValue get(final int index) {
+    public ICell get(final int index) {
         return items.get(index);
     }
 
@@ -30,15 +30,15 @@ public final class Cells {
         return items.size();
     }
 
-    public IValue peek() {
+    public ICell peek() {
         return items.getLast();
     }
 
-    public IValue pop() {
+    public ICell pop() {
         return items.removeLast();
     }
 
-    public void push(final IValue it) {
+    public void push(final ICell it) {
         items.add(it);
     }
 

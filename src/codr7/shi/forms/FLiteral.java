@@ -6,9 +6,9 @@ import codr7.shi.operations.OPush;
 import java.io.PrintStream;
 
 public class FLiteral extends Form {
-    public final IValue value;
+    public final ICell value;
 
-    public FLiteral(final Sloc sloc, final IValue value) {
+    public FLiteral(final Sloc sloc, final ICell value) {
         super(sloc);
         this.value = value;
     }
@@ -24,7 +24,7 @@ public class FLiteral extends Form {
     }
 
     @Override
-    public IValue value(final VM vm) {
+    public ICell value(final VM vm) {
         return value;
     }
 }

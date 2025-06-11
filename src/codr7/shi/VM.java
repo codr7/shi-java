@@ -15,7 +15,7 @@ public class VM {
     private final Reader reader = RForm.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
     private final Library userLibrary = new Library("user", null);
-    private IValue[] registers = {};
+    private ICell[] registers = {};
     private int registerCount = 0;
     private Library currentLibrary = userLibrary;
     private Call callStack = null;

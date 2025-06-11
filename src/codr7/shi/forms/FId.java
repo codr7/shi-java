@@ -30,7 +30,7 @@ public class FId extends Form {
     }
 
     @Override
-    public IValue value(final VM vm) {
+    public ICell value(final VM vm) {
         return vm.currentLibrary().find(name);
     }
 }
