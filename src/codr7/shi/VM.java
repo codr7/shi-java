@@ -102,7 +102,7 @@ public class VM {
         System.arraycopy(
                 result.argumentRegisters(), 0,
                 registers, result.target().rArguments,
-                result.target().arguments.length);
+                result.argumentRegisters().length);
 
         return result;
     }
