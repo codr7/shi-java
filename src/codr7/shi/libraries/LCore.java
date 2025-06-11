@@ -90,7 +90,7 @@ public class LCore extends Library {
                 });
 
         bindMacro("benchmark",
-                new Macro.Arguments()
+                new BaseMacro.Arguments()
                         .add("rounds")
                         .add("body"),
                 (final VM vm, final Forms in, final Sloc sloc) -> {
@@ -102,7 +102,7 @@ public class LCore extends Library {
                 });
 
         bindMacro("check",
-                new Macro.Arguments()
+                new BaseMacro.Arguments()
                         .add("expected")
                         .add("actual"),
                 (final VM vm, final Forms in, final Sloc sloc) -> {
@@ -112,7 +112,7 @@ public class LCore extends Library {
                 });
 
         bindMacro("if",
-                new Macro.Arguments()
+                new BaseMacro.Arguments()
                         .add("cond")
                         .add("left"),
                 (final VM vm, final Forms in, final Sloc sloc) -> {
@@ -134,7 +134,7 @@ public class LCore extends Library {
                 });
 
         bindMacro("method",
-                new Macro.Arguments()
+                new BaseMacro.Arguments()
                         .add("name")
                         .add("args")
                         .add("body"),

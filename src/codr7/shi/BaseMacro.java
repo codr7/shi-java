@@ -2,11 +2,11 @@ package codr7.shi;
 
 import java.util.ArrayList;
 
-public abstract class Macro {
+public abstract class BaseMacro {
     public final Symbol[] arguments;
     public Symbol name;
 
-    public Macro(final Symbol name, final Arguments arguments) {
+    public BaseMacro(final Symbol name, final Arguments arguments) {
         this.name = name;
         this.arguments = arguments.toArray();
     }

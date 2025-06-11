@@ -2,10 +2,10 @@ package codr7.shi;
 
 import codr7.shi.errors.EEmit;
 
-public final class HostMacro extends Macro {
+public final class JavaMacro extends BaseMacro {
     private final Body body;
 
-    public HostMacro(final Symbol name, final Arguments arguments, final Body body) {
+    public JavaMacro(final Symbol name, final Arguments arguments, final Body body) {
         super(name, arguments);
         this.body = body;
     }
