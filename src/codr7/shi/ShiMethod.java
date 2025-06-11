@@ -1,13 +1,13 @@
 package codr7.shi;
 
-public final class ScriptMethod extends Method {
+public final class ShiMethod extends Method {
     public final int rArguments;
     private final int startPc;
 
-    public ScriptMethod(final Symbol name,
-                        final Arguments arguments,
-                        final int rArguments,
-                        final int startPc) {
+    public ShiMethod(final Symbol name,
+                     final Arguments arguments,
+                     final int rArguments,
+                     final int startPc) {
         super(name, arguments);
         this.rArguments = rArguments;
         this.startPc = startPc;

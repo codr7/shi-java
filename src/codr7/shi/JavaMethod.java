@@ -1,9 +1,9 @@
 package codr7.shi;
 
-public final class HostMethod extends Method {
+public final class JavaMethod extends Method {
     private final Body body;
 
-    public HostMethod(final Symbol name, final Arguments arguments, final Body body) {
+    public JavaMethod(final Symbol name, final Arguments arguments, final Body body) {
         super(name, arguments);
         this.body = body;
     }

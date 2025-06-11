@@ -107,7 +107,7 @@ public class VM {
         return result;
     }
 
-    public void pushCall(Sloc sloc, ScriptMethod target, int returnPc) {
+    public void pushCall(Sloc sloc, ShiMethod target, int returnPc) {
         final var callRegisters = Arrays.copyOfRange(
                 registers,
                 target.rArguments,

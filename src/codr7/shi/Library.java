@@ -39,8 +39,8 @@ public class Library {
         bind(name, LCore.Macro, new HostMacro(Symbol.get(name), arguments, body));
     }
 
-    public final void bindMethod(final String name, final Method.Arguments arguments, final HostMethod.Body body) {
-        bind(name, LCore.Method, new HostMethod(Symbol.get(name), arguments, body));
+    public final void bindMethod(final String name, final Method.Arguments arguments, final JavaMethod.Body body) {
+        bind(name, LCore.Method, new JavaMethod(Symbol.get(name), arguments, body));
     }
 
     public final void bind(final ICellType type) {
