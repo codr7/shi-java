@@ -10,10 +10,6 @@ public interface ICellType {
 
     void dump(ICell value, VM vm, PrintStream out);
 
-    default ICell dup(final ICell value, final VM vm) {
-        return value;
-    }
-
     void emit(ICell value, VM vm, Forms in, Sloc sloc);
 
     default boolean equals(ICell left, ICell right) {

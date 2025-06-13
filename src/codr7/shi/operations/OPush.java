@@ -15,7 +15,7 @@ public final class OPush implements Operation {
     @Override
     public Evaluate compile(final VM vm, final int pc) {
         return (final Cells stack, final ICell[] registers) -> {
-            stack.push(value.clone());
+            stack.push(value);
             return pc + 1;
         };
     }

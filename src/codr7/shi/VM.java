@@ -22,7 +22,7 @@ public class VM {
     private Operation.Evaluate[] code = {};
     private Path path = Paths.get("");
 
-    public int allocate(final int count) {
+    public int allocateRegisters(final int count) {
         final var result = registerCount;
         registerCount += count;
         return result;

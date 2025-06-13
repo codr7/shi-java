@@ -13,8 +13,6 @@ public interface ICell extends Dumper {
         return (T) value();
     }
 
-    ICell clone();
-
     void emit(VM vm, Forms in, Sloc sloc);
 
     boolean equals(ICell other);
