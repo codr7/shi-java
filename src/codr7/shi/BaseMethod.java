@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public abstract class BaseMethod {
     public final Argument[] arguments;
-    public Symbol name;
+    public final Symbol name;
+    public final VM vm;
 
-    public BaseMethod(final Symbol name, final Arguments arguments) {
+    public BaseMethod(final VM vm, final Symbol name, final Arguments arguments) {
         this.name = name;
         this.arguments = arguments.toArray();
+        this.vm = vm;
     }
 
-    public abstract int call(VM vm, int pc, Cells stack, ICell[] registers, Sloc sloc);
+    public abstract int call(int pc, Cells stack, ICell[] registers, Sloc sloc);
 
     public record Argument(Symbol name, ICellType type) {
     }

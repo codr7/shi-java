@@ -1,5 +1,6 @@
 package codr7.shi;
 
+import codr7.shi.libraries.LCore;
 import codr7.shi.readers.RForm;
 
 import java.io.IOException;
@@ -12,15 +13,21 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VM {
+    public final Library coreLibrary = new LCore(this);
+    public final Library userLibrary = new Library(this, "user", null);
+    private Library currentLibrary = userLibrary;
+
     private final Reader reader = RForm.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
-    private final Library userLibrary = new Library("user", null);
     private ICell[] registers = {};
     private int registerCount = 0;
-    private Library currentLibrary = userLibrary;
     private Call callStack = null;
     private Operation.Evaluate[] code = {};
     private Path path = Paths.get("");
+
+    public VM() {
+        currentLibrary.importFrom(coreLibrary);
+    }
 
     public int allocateRegisters(final int count) {
         final var result = registerCount;
@@ -128,7 +135,7 @@ public class VM {
 
     public void withLibrary(Library library, final Callback callback) {
         if (library == null) {
-            library = new Library(currentLibrary.name, currentLibrary);
+            library = new Library(this, currentLibrary.name, currentLibrary);
         }
 
         final var prev = currentLibrary;

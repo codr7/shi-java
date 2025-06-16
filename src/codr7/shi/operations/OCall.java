@@ -32,7 +32,7 @@ public final class OCall implements Operation {
                 }
             }
 
-            return target.call(vm, pc + 1, stack, registers, sloc);
+            return target.call(pc + 1, stack, registers, sloc);
         };
     }
 }

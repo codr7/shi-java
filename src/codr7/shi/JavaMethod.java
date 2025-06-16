@@ -3,18 +3,18 @@ package codr7.shi;
 public final class JavaMethod extends BaseMethod {
     private final Body body;
 
-    public JavaMethod(final Symbol name, final Arguments arguments, final Body body) {
-        super(name, arguments);
+    public JavaMethod(final VM vm, final Symbol name, final Arguments arguments, final Body body) {
+        super(vm, name, arguments);
         this.body = body;
     }
 
     @Override
-    public int call(final VM vm, final int pc, final Cells stack, final ICell[] registers, final Sloc sloc) {
-        body.call(vm, stack, registers, sloc);
+    public int call(final int pc, final Cells stack, final ICell[] registers, final Sloc sloc) {
+        body.call(stack, registers, sloc);
         return pc;
     }
 
     public interface Body {
-        void call(VM vm, Cells stack, ICell[] registers, Sloc sloc);
+        void call(Cells stack, ICell[] registers, Sloc sloc);
     }
 }

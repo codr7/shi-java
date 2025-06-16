@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public abstract class BaseMacro {
     public final Symbol[] arguments;
-    public Symbol name;
+    public final Symbol name;
+    public final VM vm;
 
-    public BaseMacro(final Symbol name, final Arguments arguments) {
+    public BaseMacro(final VM vm, final Symbol name, final Arguments arguments) {
         this.name = name;
         this.arguments = arguments.toArray();
+        this.vm = vm;
     }
 
-    public abstract void call(VM vm, Forms in, Sloc sloc);
+    public abstract void call(Forms in, Sloc sloc);
 
     public static final class Arguments {
         private final ArrayList<Symbol> items = new ArrayList<>();

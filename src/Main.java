@@ -8,8 +8,6 @@ import java.nio.file.Path;
 public class Main {
     public static void main(final String[] arguments) {
         final var vm = new VM();
-        final var core = new LCore();
-        vm.currentLibrary().importFrom(core);
 
         if (arguments.length == 0) {
             new Shell(vm, System.in, System.out).run(new Cells());

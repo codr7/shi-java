@@ -16,8 +16,8 @@ public class LCore extends Library {
     public static final TMethod Method = new TMethod("Method", Any);
     public static final TTime Time = new TTime("Time", Any);
 
-    public LCore() {
-        super("core", null);
+    public LCore(final VM vm) {
+        super(vm, "core", null);
 
         bind(Binding);
         bind(Bool);
@@ -33,7 +33,7 @@ public class LCore extends Library {
                 new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Cells stack, final ICell[] registers, final Sloc sloc) -> {
+                (final Cells stack, final ICell[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Int, x + y);
@@ -43,7 +43,7 @@ public class LCore extends Library {
                 new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Cells stack, final ICell[] registers, final Sloc sloc) -> {
+                (final Cells stack, final ICell[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Int, x - y);
@@ -53,7 +53,7 @@ public class LCore extends Library {
                 new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Cells stack, final ICell[] registers, final Sloc sloc) -> {
+                (final Cells stack, final ICell[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Int, x * y);
@@ -63,7 +63,7 @@ public class LCore extends Library {
                 new BaseMethod.Arguments()
                         .add("x", Any)
                         .add("y", Any),
-                (final VM vm, final Cells stack, final ICell[] registers, final Sloc sloc) -> {
+                (final Cells stack, final ICell[] registers, final Sloc sloc) -> {
                     final var y = stack.pop();
                     final var x = stack.pop();
                     stack.push(Bool, x.equals(y));
@@ -73,7 +73,7 @@ public class LCore extends Library {
                 new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Cells stack, final ICell[] registers, final Sloc sloc) -> {
+                (final Cells stack, final ICell[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Bool, x < y);
@@ -83,7 +83,7 @@ public class LCore extends Library {
                 new BaseMethod.Arguments()
                         .add("x", Int)
                         .add("y", Int),
-                (final VM vm, final Cells stack, final ICell[] registers, final Sloc sloc) -> {
+                (final Cells stack, final ICell[] registers, final Sloc sloc) -> {
                     final var y = stack.pop().cast(Int);
                     final var x = stack.pop().cast(Int);
                     stack.push(Bool, x > y);
@@ -93,7 +93,7 @@ public class LCore extends Library {
                 new BaseMacro.Arguments()
                         .add("rounds")
                         .add("body"),
-                (final VM vm, final Forms in, final Sloc sloc) -> {
+                (final Forms in, final Sloc sloc) -> {
                     final var rounds = in.popFront().value(vm, Int);
                     final var end = new Label();
                     vm.emit(new OBenchmark(rounds, end));
@@ -105,7 +105,7 @@ public class LCore extends Library {
                 new BaseMacro.Arguments()
                         .add("expected")
                         .add("actual"),
-                (final VM vm, final Forms in, final Sloc sloc) -> {
+                (final Forms in, final Sloc sloc) -> {
                     final var expected = in.popFront().value(vm);
                     in.popFront().emit(vm, in);
                     vm.emit(new OCheck(expected, sloc));
@@ -115,7 +115,7 @@ public class LCore extends Library {
                 new BaseMacro.Arguments()
                         .add("cond")
                         .add("left"),
-                (final VM vm, final Forms in, final Sloc sloc) -> {
+                (final Forms in, final Sloc sloc) -> {
                     in.popFront().emit(vm, in);
                     final var end = new Label();
                     vm.emit(new OBranch(end));
@@ -138,7 +138,7 @@ public class LCore extends Library {
                         .add("name")
                         .add("args")
                         .add("body"),
-                (final VM vm, final Forms in, final Sloc sloc) -> {
+                (final Forms in, final Sloc sloc) -> {
                     final var name = in.popFront().cast(FId.class).name;
                     final var argForms = in.popFront().cast(FList.class).body;
                     final var args = new BaseMethod.Arguments();
@@ -159,7 +159,7 @@ public class LCore extends Library {
                     final var end = new Label();
                     vm.emit(new OGoto(end));
                     final var rArgs = vm.allocateRegisters(args.length());
-                    final var m = new ShiMethod(name, args, rArgs, vm.emitPc());
+                    final var m = new ShiMethod(vm, name, args, rArgs, vm.emitPc());
                     vm.currentLibrary().bind(name, new Cell<>(LCore.Method, m));
 
                     vm.withLibrary(null, () -> {
@@ -180,7 +180,7 @@ public class LCore extends Library {
         bindMethod("say",
                 new BaseMethod.Arguments()
                         .add("what", Any),
-                (final VM vm, final Cells stack, final ICell[] registers, final Sloc sloc) -> {
+                (final Cells stack, final ICell[] registers, final Sloc sloc) -> {
                     stack.pop().write(vm, System.out);
                     System.out.println();
                 });

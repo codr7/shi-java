@@ -7,16 +7,19 @@ import java.util.Map;
 
 public class Library {
     public final Symbol name;
-    private final Map<Symbol, ICell> bindings = new HashMap<>();
-    private final Library parent;
+    public final Library parent;
+    public final VM vm;
 
-    public Library(final Symbol name, final Library parent) {
+    private final Map<Symbol, ICell> bindings = new HashMap<>();
+
+    public Library(final VM vm, final Symbol name, final Library parent) {
         this.name = name;
+        this.vm = vm;
         this.parent = parent;
     }
 
-    public Library(final String name, final Library parent) {
-        this(Symbol.get(name), parent);
+    public Library(final VM vm, final String name, final Library parent) {
+        this(vm, Symbol.get(name), parent);
     }
 
     public final void bind(final Symbol key, final ICell value) {
@@ -36,11 +39,11 @@ public class Library {
     }
 
     public final void bindMacro(final String name, final BaseMacro.Arguments arguments, final JavaMacro.Body body) {
-        bind(name, LCore.Macro, new JavaMacro(Symbol.get(name), arguments, body));
+        bind(name, LCore.Macro, new JavaMacro(vm, Symbol.get(name), arguments, body));
     }
 
     public final void bindMethod(final String name, final BaseMethod.Arguments arguments, final JavaMethod.Body body) {
-        bind(name, LCore.Method, new JavaMethod(Symbol.get(name), arguments, body));
+        bind(name, LCore.Method, new JavaMethod(vm, Symbol.get(name), arguments, body));
     }
 
     public final void bind(final ICellType type) {

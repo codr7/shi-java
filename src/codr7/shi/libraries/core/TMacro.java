@@ -9,6 +9,6 @@ public final class TMacro extends CellType<BaseMacro> {
 
     @Override
     public void emit(final ICell value, final VM vm, final Forms in, final Sloc sloc) {
-        value.cast(this).call(vm, in, sloc);
+        value.cast(this).call(in, sloc);
     }
 }
