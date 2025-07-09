@@ -2,10 +2,10 @@ package codr7.shi.readers;
 
 import codr7.shi.*;
 import codr7.shi.errors.ERead;
-import codr7.shi.forms.FId;
+import codr7.shi.forms.FIdentifier;
 
-public class RId implements Reader {
-    public static final RId INSTANCE = new RId();
+public class RIdentifier implements Reader {
+    public static final RIdentifier INSTANCE = new RIdentifier();
 
     public boolean read(final VM vm, final Input in, final Forms out) {
         final var formSloc = in.sloc().dup();
@@ -26,7 +26,7 @@ public class RId implements Reader {
             throw new ERead(formSloc, "Invalid id");
         }
 
-        out.pushBack(new FId(formSloc, Symbol.get(buf.toString())));
+        out.pushBack(new FIdentifier(formSloc, Symbol.get(buf.toString())));
         return true;
     }
 }

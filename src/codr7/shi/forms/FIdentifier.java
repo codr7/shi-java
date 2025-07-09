@@ -5,10 +5,10 @@ import codr7.shi.errors.EEmit;
 
 import java.io.PrintStream;
 
-public class FId extends Form {
+public class FIdentifier extends Form {
     public final Symbol name;
 
-    public FId(final Sloc sloc, final Symbol name) {
+    public FIdentifier(final Sloc sloc, final Symbol name) {
         super(sloc);
         this.name = name;
     }

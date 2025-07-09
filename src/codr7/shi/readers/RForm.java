@@ -17,7 +17,7 @@ public class RForm implements Reader {
             case -1 -> false;
             case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> RInt.INSTANCE.read(vm, in, out);
             case '(' -> RList.INSTANCE.read(vm, in, out);
-            default -> RId.INSTANCE.read(vm, in, out);
+            default -> RIdentifier.INSTANCE.read(vm, in, out);
         };
     }
 }

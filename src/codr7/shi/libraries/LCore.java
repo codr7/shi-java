@@ -1,7 +1,7 @@
 package codr7.shi.libraries;
 
 import codr7.shi.*;
-import codr7.shi.forms.FId;
+import codr7.shi.forms.FIdentifier;
 import codr7.shi.forms.FList;
 import codr7.shi.libraries.core.*;
 import codr7.shi.operations.*;
@@ -121,7 +121,7 @@ public class LCore extends Library {
                     vm.emit(new OBranch(end));
                     in.popFront().emit(vm, in);
 
-                    if (in.length() > 0 && in.peekFront() instanceof FId id && id.name == Symbol.get("else")) {
+                    if (in.length() > 0 && in.peekFront() instanceof FIdentifier id && id.name == Symbol.get("else")) {
                         in.popFront();
                         final var elseEnd = new Label();
                         vm.emit(new OGoto(elseEnd));
@@ -139,12 +139,12 @@ public class LCore extends Library {
                         .add("args")
                         .add("body"),
                 (final Forms in, final Sloc sloc) -> {
-                    final var name = in.popFront().cast(FId.class).name;
+                    final var name = in.popFront().cast(FIdentifier.class).name;
                     final var argForms = in.popFront().cast(FList.class).body;
                     final var args = new BaseMethod.Arguments();
 
                     for (var i = 0; i < argForms.length; i++) {
-                        final var argName = argForms[i].cast(FId.class).name;
+                        final var argName = argForms[i].cast(FIdentifier.class).name;
                         var argType = (argForms.length > i + 1) ? argForms[i + 1].value(vm, LCore.Meta) : null;
 
                         if (argType == null) {
