@@ -160,11 +160,11 @@ public class LCore extends Library {
                     vm.emit(new OGoto(end));
                     final var rArgs = vm.allocateRegisters(args.length());
                     final var m = new ShiMethod(vm, name, args, rArgs, vm.emitPc());
-                    vm.currentLibrary().bind(name, new Cell<>(LCore.Method, m));
+                    vm.library().bind(name, new Cell<>(LCore.Method, m));
 
                     vm.withLibrary(null, () -> {
                         for (var i = 0; i < m.arguments.length; i++) {
-                            vm.currentLibrary().bind(
+                            vm.library().bind(
                                     m.arguments[m.arguments.length - i - 1].name(),
                                     new Cell<>(Binding, rArgs + i));
                         }

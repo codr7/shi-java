@@ -15,7 +15,7 @@ import java.util.List;
 public class VM {
     public final Library coreLibrary = new LCore(this);
     public final Library userLibrary = new Library(this, "user", null);
-    private Library currentLibrary = userLibrary;
+    private Library library = userLibrary;
 
     private final Reader reader = RForm.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
@@ -26,7 +26,7 @@ public class VM {
     private Path path = Paths.get("");
 
     public VM() {
-        currentLibrary.importFrom(coreLibrary);
+        library.importFrom(coreLibrary);
     }
 
     public int allocateRegisters(final int count) {
@@ -41,10 +41,6 @@ public class VM {
         for (var pc = fromPc; pc < operations.size(); pc++) {
             code[pc] = operations.get(pc).compile(this, pc);
         }
-    }
-
-    public Library currentLibrary() {
-        return currentLibrary;
     }
 
     public void emit(final Operation operation) {
@@ -79,6 +75,10 @@ public class VM {
         read(new Input(new StringReader(in), sloc), forms);
         forms.emit(this);
         evaluate(startPc, -1, stack);
+    }
+
+    public Library library() {
+        return library;
     }
 
     public void load(final Path path) {
@@ -135,16 +135,16 @@ public class VM {
 
     public void withLibrary(Library library, final Callback callback) {
         if (library == null) {
-            library = new Library(this, currentLibrary.name, currentLibrary);
+            library = new Library(this, this.library.name, this.library);
         }
 
-        final var prev = currentLibrary;
-        currentLibrary = library;
+        final var prev = this.library;
+        this.library = library;
 
         try {
             callback.call();
         } finally {
-            currentLibrary = prev;
+            this.library = prev;
         }
     }
 

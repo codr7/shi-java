@@ -31,6 +31,6 @@ public class FIdentifier extends Form {
 
     @Override
     public ICell value(final VM vm) {
-        return vm.currentLibrary().find(name);
+        return vm.library().find(name);
     }
 }
