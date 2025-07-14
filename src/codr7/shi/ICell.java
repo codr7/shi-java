@@ -22,6 +22,4 @@ public interface ICell extends Dumper {
     ICellType type();
 
     Object value();
-
-    void write(final VM vm, final PrintStream out);
 }

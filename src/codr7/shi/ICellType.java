@@ -21,8 +21,4 @@ public interface ICellType {
     Stream<ICellType> parents();
 
     boolean subtypeOf(ICellType other);
-
-    default void write(final ICell value, final VM vm, final PrintStream out) {
-        dump(value, vm, out);
-    }
 }

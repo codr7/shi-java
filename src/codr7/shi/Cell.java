@@ -26,10 +26,4 @@ public record Cell<T>(CellType<T> type, T value) implements ICell {
     public boolean isa(final ICellType type) {
         return this.type == type || this.type.subtypeOf(type);
     }
-
-    @Override
-    public void write(final VM vm, final PrintStream out) {
-        type.write(this, vm, out);
-    }
-
 }

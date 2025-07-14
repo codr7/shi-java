@@ -181,7 +181,7 @@ public class LCore extends Library {
                 new BaseMethod.Arguments()
                         .add("what", Any),
                 (final Cells stack, final ICell[] registers, final Sloc sloc) -> {
-                    stack.pop().write(vm, System.out);
+                    stack.pop().dump(vm, System.out);
                     System.out.println();
                 });
 
