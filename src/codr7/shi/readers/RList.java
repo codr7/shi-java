@@ -20,7 +20,7 @@ public class RList implements Reader {
         }
 
         for (; ; ) {
-            RSpace.INSTANCE.read(vm, in, out);
+            RWhitespace.INSTANCE.read(vm, in, out);
             final var c = in.get();
 
             if (c == ')') {

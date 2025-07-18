@@ -1,5 +1,5 @@
 # shi-java
-a Simple Hackable Interpreter in Java
+a [Simple Hackable Interpreter](https://github.com/codr7/shi) in Java
 
 ## Notes
 The project includes a prebuilt `.jar` file. Run without arguments to start the REPL, with to load and evaluate the specified files.

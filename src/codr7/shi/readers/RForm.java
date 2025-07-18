@@ -9,7 +9,7 @@ public class RForm implements Reader {
     public static final RForm INSTANCE = new RForm();
 
     public boolean read(final VM vm, final Input in, final Forms out) {
-        RSpace.INSTANCE.read(vm, in, out);
+        RWhitespace.INSTANCE.read(vm, in, out);
         final var c = in.get();
         in.unget();
 
