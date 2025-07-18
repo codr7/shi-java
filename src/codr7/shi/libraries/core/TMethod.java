@@ -1,7 +1,7 @@
 package codr7.shi.libraries.core;
 
 import codr7.shi.*;
-import codr7.shi.operations.OCall;
+import codr7.shi.operations.CallMethod;
 
 public final class TMethod extends CellType<BaseMethod> {
     public TMethod(final String name, final ICellType... parents) {
@@ -16,6 +16,6 @@ public final class TMethod extends CellType<BaseMethod> {
             in.popFront().emit(vm, in);
         }
 
-        vm.emit(new OCall(m, sloc));
+        vm.emit(new CallMethod(m, sloc));
     }
 }

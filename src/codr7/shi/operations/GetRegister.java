@@ -5,17 +5,17 @@ import codr7.shi.Operation;
 import codr7.shi.VM;
 import codr7.shi.Cells;
 
-public final class OPush implements Operation {
-    private final ICell value;
+public final class GetRegister implements Operation {
+    private final int rSource;
 
-    public OPush(final ICell value) {
-        this.value = value;
+    public GetRegister(final int rSource) {
+        this.rSource = rSource;
     }
 
     @Override
     public Evaluate compile(final VM vm, final int pc) {
         return (final Cells stack, final ICell[] registers) -> {
-            stack.push(value);
+            stack.push(registers[rSource]);
             return pc + 1;
         };
     }

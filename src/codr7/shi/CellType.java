@@ -1,6 +1,6 @@
 package codr7.shi;
 
-import codr7.shi.operations.OPush;
+import codr7.shi.operations.PushValue;
 
 import java.io.PrintStream;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ public abstract class CellType<T> implements ICellType {
 
     @Override
     public void emit(final ICell value, final VM vm, final Forms in, final Sloc sloc) {
-        vm.emit(new OPush(value));
+        vm.emit(new PushValue(value));
     }
 
     @Override

@@ -3,11 +3,11 @@ package codr7.shi.operations;
 import codr7.shi.*;
 import codr7.shi.errors.EEvaluate;
 
-public final class OCheck implements Operation {
+public final class CheckValue implements Operation {
     private final ICell expected;
     private final Sloc sloc;
 
-    public OCheck(final ICell expected, final Sloc sloc) {
+    public CheckValue(final ICell expected, final Sloc sloc) {
         this.expected = expected;
         this.sloc = sloc;
     }

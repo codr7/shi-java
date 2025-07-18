@@ -1,7 +1,7 @@
 package codr7.shi.libraries.core;
 
 import codr7.shi.*;
-import codr7.shi.operations.OGet;
+import codr7.shi.operations.GetRegister;
 
 import java.io.PrintStream;
 
@@ -17,6 +17,6 @@ public final class TBinding extends CellType<Integer> {
 
     @Override
     public void emit(final ICell value, final VM vm, final Forms in, final Sloc sloc) {
-        vm.emit(new OGet(value.cast(this)));
+        vm.emit(new GetRegister(value.cast(this)));
     }
 }

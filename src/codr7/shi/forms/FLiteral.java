@@ -1,7 +1,7 @@
 package codr7.shi.forms;
 
 import codr7.shi.*;
-import codr7.shi.operations.OPush;
+import codr7.shi.operations.PushValue;
 
 import java.io.PrintStream;
 
@@ -20,7 +20,7 @@ public class FLiteral extends Form {
 
     @Override
     public void emit(final VM vm, final Forms in) {
-        vm.emit(new OPush(value));
+        vm.emit(new PushValue(value));
     }
 
     @Override

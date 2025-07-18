@@ -2,10 +2,10 @@ package codr7.shi.operations;
 
 import codr7.shi.*;
 
-public final class OBranch implements Operation {
+public final class Branch implements Operation {
     private final Label end;
 
-    public OBranch(final Label end) {
+    public Branch(final Label end) {
         this.end = end;
     }
 

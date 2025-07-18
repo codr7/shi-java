@@ -2,10 +2,10 @@ package codr7.shi.operations;
 
 import codr7.shi.*;
 
-public final class OGoto implements Operation {
+public final class Goto implements Operation {
     private final Label target;
 
-    public OGoto(final Label target) {
+    public Goto(final Label target) {
         this.target = target;
     }
 

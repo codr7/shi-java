@@ -96,7 +96,7 @@ public class LCore extends Library {
                 (final Forms in, final Sloc sloc) -> {
                     final var rounds = in.popFront().value(vm, Int);
                     final var end = new Label();
-                    vm.emit(new OBenchmark(rounds, end));
+                    vm.emit(new Benchmark(rounds, end));
                     in.popFront().emit(vm, in);
                     end.pc = vm.emitPc();
                 });
@@ -108,7 +108,7 @@ public class LCore extends Library {
                 (final Forms in, final Sloc sloc) -> {
                     final var expected = in.popFront().value(vm);
                     in.popFront().emit(vm, in);
-                    vm.emit(new OCheck(expected, sloc));
+                    vm.emit(new CheckValue(expected, sloc));
                 });
 
         bindMacro("if",
@@ -118,13 +118,13 @@ public class LCore extends Library {
                 (final Forms in, final Sloc sloc) -> {
                     in.popFront().emit(vm, in);
                     final var end = new Label();
-                    vm.emit(new OBranch(end));
+                    vm.emit(new Branch(end));
                     in.popFront().emit(vm, in);
 
                     if (in.length() > 0 && in.peekFront() instanceof FIdentifier id && id.name == Symbol.get("else")) {
                         in.popFront();
                         final var elseEnd = new Label();
-                        vm.emit(new OGoto(elseEnd));
+                        vm.emit(new Goto(elseEnd));
                         end.pc = vm.emitPc();
                         in.popFront().emit(vm, in);
                         elseEnd.pc = vm.emitPc();
@@ -157,7 +157,7 @@ public class LCore extends Library {
                     }
 
                     final var end = new Label();
-                    vm.emit(new OGoto(end));
+                    vm.emit(new Goto(end));
                     final var rArgs = vm.allocateRegisters(args.length());
                     final var m = new ShiMethod(vm, name, args, rArgs, vm.emitPc());
                     vm.library().bind(name, new Cell<>(LCore.Method, m));
@@ -169,11 +169,11 @@ public class LCore extends Library {
                                     new Cell<>(Binding, rArgs + i));
                         }
 
-                        vm.emit(new OPut(rArgs, m.arguments.length));
+                        vm.emit(new PutRegister(rArgs, m.arguments.length));
                         in.popFront().emit(vm, in);
                     });
 
-                    vm.emit(new OReturn());
+                    vm.emit(new Return());
                     end.pc = vm.emitPc();
                 });
 

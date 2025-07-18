@@ -5,11 +5,11 @@ import codr7.shi.libraries.LCore;
 
 import java.time.Duration;
 
-public final class OBenchmark implements Operation {
+public final class Benchmark implements Operation {
     private final Label end;
     private final long rounds;
 
-    public OBenchmark(final long rounds, final Label end) {
+    public Benchmark(final long rounds, final Label end) {
         this.rounds = rounds;
         this.end = end;
     }
