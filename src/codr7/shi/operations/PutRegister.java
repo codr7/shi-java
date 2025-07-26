@@ -1,9 +1,9 @@
 package codr7.shi.operations;
 
+import codr7.shi.Cells;
 import codr7.shi.ICell;
 import codr7.shi.Operation;
 import codr7.shi.VM;
-import codr7.shi.Cells;
 
 public final class PutRegister implements Operation {
     private final int rTarget;

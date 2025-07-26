@@ -1,8 +1,8 @@
 package codr7.shi.libraries.core;
 
-import codr7.shi.ICellType;
-import codr7.shi.ICell;
 import codr7.shi.CellType;
+import codr7.shi.ICell;
+import codr7.shi.ICellType;
 import codr7.shi.VM;
 
 import java.io.PrintStream;

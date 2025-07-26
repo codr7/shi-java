@@ -15,10 +15,9 @@ import java.util.List;
 public class VM {
     public final Library coreLibrary = new LCore(this);
     public final Library userLibrary = new Library(this, "user", null);
-    private Library library = userLibrary;
-
     private final Reader reader = RForm.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
+    private Library library = userLibrary;
     private ICell[] registers = {};
     private int registerCount = 0;
     private Call callStack = null;
@@ -133,13 +132,9 @@ public class VM {
         return reader.read(this, in, out);
     }
 
-    public void withLibrary(Library library, final Callback callback) {
-        if (library == null) {
-            library = new Library(this, this.library.name, this.library);
-        }
-
+    public void libraryDo(final Callback callback) {
         final var prev = this.library;
-        this.library = library;
+        this.library = new Library(this, this.library.name, this.library);
 
         try {
             callback.call();

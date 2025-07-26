@@ -32,7 +32,7 @@ public class FList extends Form {
 
     @Override
     public void emit(final VM vm, final Forms in) {
-        vm.withLibrary(null, () -> {
+        vm.libraryDo(() -> {
             new Forms(body).emit(vm);
         });
     }

@@ -162,7 +162,7 @@ public class LCore extends Library {
                     final var m = new ShiMethod(vm, name, args, rArgs, vm.emitPc());
                     vm.library().bind(name, new Cell<>(LCore.Method, m));
 
-                    vm.withLibrary(null, () -> {
+                    vm.libraryDo(() -> {
                         for (var i = 0; i < m.arguments.length; i++) {
                             vm.library().bind(
                                     m.arguments[m.arguments.length - i - 1].name(),

@@ -7,7 +7,7 @@ public record Cell<T>(CellType<T> type, T value) implements ICell {
     public boolean asBool() {
         return type.asBool(this);
     }
-    
+
     @Override
     public void dump(final VM vm, final PrintStream out) {
         type.dump(this, vm, out);

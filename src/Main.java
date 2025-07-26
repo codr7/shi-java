@@ -1,7 +1,6 @@
+import codr7.shi.Cells;
 import codr7.shi.Shell;
 import codr7.shi.VM;
-import codr7.shi.Cells;
-import codr7.shi.libraries.LCore;
 
 import java.nio.file.Path;
 

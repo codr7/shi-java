@@ -1,7 +1,5 @@
 package codr7.shi;
 
-import java.io.PrintStream;
-
 public interface ICell extends Dumper {
     boolean asBool();
 
