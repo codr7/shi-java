@@ -1,7 +1,7 @@
 package codr7.shi.operations;
 
 import codr7.shi.*;
-import codr7.shi.libraries.LCore;
+import codr7.shi.libraries.Core;
 
 import java.time.Duration;
 
@@ -26,7 +26,7 @@ public final class Benchmark implements Operation {
             }
 
             final var elapsed = Duration.ofNanos(System.nanoTime() - startTime);
-            stack.push(LCore.Time, elapsed);
+            stack.push(Core.Time, elapsed);
             return end.pc;
         };
     }

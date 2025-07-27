@@ -2,7 +2,7 @@ package codr7.shi.operations;
 
 import codr7.shi.*;
 import codr7.shi.errors.EEvaluate;
-import codr7.shi.libraries.LCore;
+import codr7.shi.libraries.Core;
 
 public final class CallMethod implements Operation {
     private final BaseMethod target;
@@ -28,7 +28,7 @@ public final class CallMethod implements Operation {
                 final var at = target.arguments[i].type();
                 final var v = stack.get(sl - i - 1);
 
-                if (at != LCore.Any && !v.isa(at)) {
+                if (at != Core.Any && !v.isa(at)) {
                     throw new EEvaluate(sloc, "Type mismatch: expected " + at + ", actual " + v.type());
                 }
             }

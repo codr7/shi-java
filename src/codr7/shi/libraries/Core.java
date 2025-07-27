@@ -6,7 +6,7 @@ import codr7.shi.forms.FList;
 import codr7.shi.libraries.core.*;
 import codr7.shi.operations.*;
 
-public class LCore extends Library {
+public class Core extends Library {
     public static final ICellType Any = new Trait("Any");
     public static final TBinding Binding = new TBinding("Binding", Any);
     public static final TBool Bool = new TBool("Bool", Any);
@@ -16,7 +16,7 @@ public class LCore extends Library {
     public static final TMethod Method = new TMethod("Method", Any);
     public static final TTime Time = new TTime("Time", Any);
 
-    public LCore(final VM vm) {
+    public Core(final VM vm) {
         super(vm, "core", null);
 
         bind(Binding);
@@ -145,7 +145,7 @@ public class LCore extends Library {
 
                     for (var i = 0; i < argForms.length; i++) {
                         final var argName = argForms[i].cast(FIdentifier.class).name;
-                        var argType = (argForms.length > i + 1) ? argForms[i + 1].value(vm, LCore.Meta) : null;
+                        var argType = (argForms.length > i + 1) ? argForms[i + 1].value(vm, Core.Meta) : null;
 
                         if (argType == null) {
                             argType = Any;
@@ -160,7 +160,7 @@ public class LCore extends Library {
                     vm.emit(new Goto(end));
                     final var rArgs = vm.allocateRegisters(args.length());
                     final var m = new ShiMethod(vm, name, args, rArgs, vm.emitPc());
-                    vm.library().bind(name, new Cell<>(LCore.Method, m));
+                    vm.library().bind(name, new Cell<>(Core.Method, m));
 
                     vm.libraryDo(() -> {
                         for (var i = 0; i < m.arguments.length; i++) {
@@ -169,7 +169,7 @@ public class LCore extends Library {
                                     new Cell<>(Binding, rArgs + i));
                         }
 
-                        vm.emit(new PutRegister(rArgs, m.arguments.length));
+                        vm.emit(new SetRegister(rArgs, m.arguments.length));
                         in.popFront().emit(vm, in);
                     });
 

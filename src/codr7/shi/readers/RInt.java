@@ -2,7 +2,7 @@ package codr7.shi.readers;
 
 import codr7.shi.*;
 import codr7.shi.forms.FLiteral;
-import codr7.shi.libraries.LCore;
+import codr7.shi.libraries.Core;
 
 public class RInt implements Reader {
     public static final RInt INSTANCE = new RInt();
@@ -22,7 +22,7 @@ public class RInt implements Reader {
             v = v * 10 + c - '0';
         }
 
-        out.pushBack(new FLiteral(formSloc, new Cell<>(LCore.Int, v)));
+        out.pushBack(new FLiteral(formSloc, new Cell<>(Core.Int, v)));
         return true;
     }
 }

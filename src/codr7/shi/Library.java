@@ -1,6 +1,6 @@
 package codr7.shi;
 
-import codr7.shi.libraries.LCore;
+import codr7.shi.libraries.Core;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,15 +39,15 @@ public class Library {
     }
 
     public final void bindMacro(final String name, final BaseMacro.Arguments arguments, final JavaMacro.Body body) {
-        bind(name, LCore.Macro, new JavaMacro(vm, Symbol.get(name), arguments, body));
+        bind(name, Core.Macro, new JavaMacro(vm, Symbol.get(name), arguments, body));
     }
 
     public final void bindMethod(final String name, final BaseMethod.Arguments arguments, final JavaMethod.Body body) {
-        bind(name, LCore.Method, new JavaMethod(vm, Symbol.get(name), arguments, body));
+        bind(name, Core.Method, new JavaMethod(vm, Symbol.get(name), arguments, body));
     }
 
     public final void bind(final ICellType type) {
-        bind(type.name(), LCore.Meta, type);
+        bind(type.name(), Core.Meta, type);
     }
 
     public final ICell find(final Symbol key) {

@@ -1,6 +1,6 @@
 package codr7.shi;
 
-import codr7.shi.libraries.LCore;
+import codr7.shi.libraries.Core;
 import codr7.shi.readers.RForm;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VM {
-    public final Library coreLibrary = new LCore(this);
+    public final Library coreLibrary = new Core(this);
     public final Library userLibrary = new Library(this, "user", null);
     private final Reader reader = RForm.INSTANCE;
     private final List<Operation> operations = new ArrayList<>();
