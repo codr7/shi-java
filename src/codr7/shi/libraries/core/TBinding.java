@@ -17,6 +17,6 @@ public final class TBinding extends CellType<Integer> {
 
     @Override
     public void emit(final ICell value, final VM vm, final Forms in, final Sloc sloc) {
-        vm.emit(new GetRegister(value.cast(this)));
+        vm.emit(new GetRegister(value.cast(this), 1));
     }
 }

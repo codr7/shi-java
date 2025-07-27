@@ -169,7 +169,7 @@ public class Core extends Library {
                                     new Cell<>(Binding, rArgs + i));
                         }
 
-                        vm.emit(new SetRegister(rArgs, m.arguments.length));
+                        vm.emit(new SetRegisters(rArgs, m.arguments.length));
                         in.popFront().emit(vm, in);
                     });
 

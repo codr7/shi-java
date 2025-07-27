@@ -5,11 +5,11 @@ import codr7.shi.ICell;
 import codr7.shi.Operation;
 import codr7.shi.VM;
 
-public final class SetRegister implements Operation {
+public final class SetRegisters implements Operation {
     private final int rTarget;
     private final int count;
 
-    public SetRegister(final int rTarget, final int count) {
+    public SetRegisters(final int rTarget, final int count) {
         this.rTarget = rTarget;
         this.count = count;
     }
