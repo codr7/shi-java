@@ -5,10 +5,10 @@ import codr7.shi.operations.PushValue;
 
 import java.io.PrintStream;
 
-public class FLiteral extends Form {
+public class Literal extends Form {
     public final ICell value;
 
-    public FLiteral(final Sloc sloc, final ICell value) {
+    public Literal(final Sloc sloc, final ICell value) {
         super(sloc);
         this.value = value;
     }

@@ -7,10 +7,10 @@ import codr7.shi.VM;
 
 import java.io.PrintStream;
 
-public class FList extends Form {
+public class Scope extends Form {
     public final Form[] body;
 
-    public FList(final Sloc sloc, final Form[] body) {
+    public Scope(final Sloc sloc, final Form[] body) {
         super(sloc);
         this.body = body;
     }

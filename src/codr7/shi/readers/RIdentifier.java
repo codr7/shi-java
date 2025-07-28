@@ -2,7 +2,7 @@ package codr7.shi.readers;
 
 import codr7.shi.*;
 import codr7.shi.errors.ERead;
-import codr7.shi.forms.FIdentifier;
+import codr7.shi.forms.Identifier;
 
 public class RIdentifier implements Reader {
     public static final RIdentifier INSTANCE = new RIdentifier();
@@ -26,7 +26,7 @@ public class RIdentifier implements Reader {
             throw new ERead(formSloc, "Invalid id");
         }
 
-        out.pushBack(new FIdentifier(formSloc, Symbol.get(buf.toString())));
+        out.pushBack(new Identifier(formSloc, Symbol.get(buf.toString())));
         return true;
     }
 }

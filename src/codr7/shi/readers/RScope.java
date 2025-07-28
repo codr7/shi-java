@@ -5,10 +5,10 @@ import codr7.shi.Input;
 import codr7.shi.Reader;
 import codr7.shi.VM;
 import codr7.shi.errors.ERead;
-import codr7.shi.forms.FList;
+import codr7.shi.forms.Scope;
 
-public class RList implements Reader {
-    public static final RList INSTANCE = new RList();
+public class RScope implements Reader {
+    public static final RScope INSTANCE = new RScope();
 
     public boolean read(final VM vm, final Input in, final Forms out) {
         final var formSloc = in.sloc().dup();
@@ -34,7 +34,7 @@ public class RList implements Reader {
             }
         }
 
-        out.pushBack(new FList(formSloc, body.toArray()));
+        out.pushBack(new Scope(formSloc, body.toArray()));
         return true;
     }
 }

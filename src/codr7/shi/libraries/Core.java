@@ -1,8 +1,8 @@
 package codr7.shi.libraries;
 
 import codr7.shi.*;
-import codr7.shi.forms.FIdentifier;
-import codr7.shi.forms.FList;
+import codr7.shi.forms.Identifier;
+import codr7.shi.forms.Scope;
 import codr7.shi.libraries.core.*;
 import codr7.shi.operations.*;
 
@@ -121,7 +121,7 @@ public class Core extends Library {
                     vm.emit(new Branch(end));
                     in.popFront().emit(vm, in);
 
-                    if (in.length() > 0 && in.peekFront() instanceof FIdentifier id && id.name == Symbol.get("else")) {
+                    if (in.length() > 0 && in.peekFront() instanceof Identifier id && id.name == Symbol.get("else")) {
                         in.popFront();
                         final var elseEnd = new Label();
                         vm.emit(new Goto(elseEnd));
@@ -139,12 +139,12 @@ public class Core extends Library {
                         .add("args")
                         .add("body"),
                 (final Forms in, final Sloc sloc) -> {
-                    final var name = in.popFront().cast(FIdentifier.class).name;
-                    final var argForms = in.popFront().cast(FList.class).body;
+                    final var name = in.popFront().cast(Identifier.class).name;
+                    final var argForms = in.popFront().cast(Scope.class).body;
                     final var args = new BaseMethod.Arguments();
 
                     for (var i = 0; i < argForms.length; i++) {
-                        final var argName = argForms[i].cast(FIdentifier.class).name;
+                        final var argName = argForms[i].cast(Identifier.class).name;
                         var argType = (argForms.length > i + 1) ? argForms[i + 1].value(vm, Core.Meta) : null;
 
                         if (argType == null) {
