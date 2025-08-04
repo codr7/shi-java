@@ -14,7 +14,6 @@ public class Core extends Library {
     public static final TMacro Macro = new TMacro("Macro", Any);
     public static final TMeta Meta = new TMeta("Meta", Any);
     public static final TMethod Method = new TMethod("Method", Any);
-    public static final TTime Time = new TTime("Time", Any);
 
     public Core(final VM vm) {
         super(vm, "core", null);

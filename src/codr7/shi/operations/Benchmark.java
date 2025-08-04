@@ -25,8 +25,7 @@ public final class Benchmark implements Operation {
                 vm.evaluate(pc + 1, end.pc, bodyStack);
             }
 
-            final var elapsed = Duration.ofNanos(System.nanoTime() - startTime);
-            stack.push(Core.Time, elapsed);
+            stack.push(Core.Int, System.nanoTime() - startTime);
             return end.pc;
         };
     }
