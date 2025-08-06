@@ -1,4 +1,0 @@
-* add ShiMethod.callDepth
-** inc in pushCall
-** dec in popCall
-** use to control register copy
