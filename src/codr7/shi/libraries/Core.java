@@ -1,6 +1,7 @@
 package codr7.shi.libraries;
 
 import codr7.shi.*;
+import codr7.shi.errors.EEmit;
 import codr7.shi.forms.Identifier;
 import codr7.shi.forms.Scope;
 import codr7.shi.libraries.core.*;
@@ -174,6 +175,29 @@ public class Core extends Library {
 
                     vm.emit(new Return());
                     end.pc = vm.emitPc();
+                });
+
+        bindMacro("return",
+                new BaseMacro.Arguments()
+                        .add("what"),
+                (final Forms in, final Sloc sloc) -> {
+                    final var wf = in.popFront();
+                    final var w = wf.value(vm);
+
+                    if (w == null) {
+                        throw new EEmit(sloc, "Expected value to return");
+                    }
+
+                    if (w.type() == Core.Method && w.value() instanceof ShiMethod m) {
+                        for (final var a : m.arguments) {
+                            in.popFront().emit(vm, in);
+                        }
+
+                        vm.emit(new Goto(new Label(m.startPc)));
+                    } else {
+                        w.emit(vm, in, sloc);
+                        vm.emit(new Return());
+                    }
                 });
 
         bindMethod("say",

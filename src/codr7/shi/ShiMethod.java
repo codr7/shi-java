@@ -2,7 +2,7 @@ package codr7.shi;
 
 public final class ShiMethod extends BaseMethod {
     public final int rArguments;
-    private final int startPc;
+    public final int startPc;
 
     public ShiMethod(final VM vm,
                      final Symbol name,
