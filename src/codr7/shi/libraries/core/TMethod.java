@@ -4,8 +4,8 @@ import codr7.shi.*;
 import codr7.shi.operations.CallMethod;
 
 public final class TMethod extends CellType<BaseMethod> {
-    public TMethod(final String name, final ICellType... parents) {
-        super(name, parents);
+    public TMethod(final String name) {
+        super(name);
     }
 
     @Override

@@ -6,8 +6,8 @@ import codr7.shi.operations.GetRegister;
 import java.io.PrintStream;
 
 public final class TBinding extends CellType<Integer> {
-    public TBinding(final String name, final ICellType... parents) {
-        super(name, parents);
+    public TBinding(final String name) {
+        super(name);
     }
 
     @Override

@@ -8,8 +8,8 @@ import codr7.shi.VM;
 import java.io.PrintStream;
 
 public final class TBool extends CellType<Boolean> {
-    public TBool(final String name, final ICellType... parents) {
-        super(name, parents);
+    public TBool(final String name) {
+        super(name);
     }
 
     @Override

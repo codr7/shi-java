@@ -1,5 +1,7 @@
 package codr7.shi;
 
+import codr7.shi.libraries.Core;
+
 import java.io.PrintStream;
 
 public record Cell<T>(CellType<T> type, T value) implements ICell {
@@ -24,6 +26,6 @@ public record Cell<T>(CellType<T> type, T value) implements ICell {
 
     @Override
     public boolean isa(final ICellType type) {
-        return this.type == type || this.type.subtypeOf(type);
+        return type == Core.Any || this.type == type;
     }
 }

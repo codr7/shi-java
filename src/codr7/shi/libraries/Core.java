@@ -8,12 +8,12 @@ import codr7.shi.operations.*;
 
 public class Core extends Library {
     public static final ICellType Any = new Trait("Any");
-    public static final TBinding Binding = new TBinding("Binding", Any);
-    public static final TBool Bool = new TBool("Bool", Any);
-    public static final TInt Int = new TInt("Int", Any);
-    public static final TMacro Macro = new TMacro("Macro", Any);
-    public static final TMeta Meta = new TMeta("Meta", Any);
-    public static final TMethod Method = new TMethod("Method", Any);
+    public static final TBinding Binding = new TBinding("Binding");
+    public static final TBool Bool = new TBool("Bool");
+    public static final TInt Int = new TInt("Int");
+    public static final TMacro Macro = new TMacro("Macro");
+    public static final TMeta Meta = new TMeta("Meta");
+    public static final TMethod Method = new TMethod("Method");
 
     public Core(final VM vm) {
         super(vm, "core", null);

@@ -17,8 +17,4 @@ public interface ICellType {
     }
 
     Symbol name();
-
-    Stream<ICellType> parents();
-
-    boolean subtypeOf(ICellType other);
 }

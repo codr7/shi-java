@@ -3,8 +3,8 @@ package codr7.shi.libraries.core;
 import codr7.shi.*;
 
 public final class TMacro extends CellType<BaseMacro> {
-    public TMacro(final String name, final ICellType... parents) {
-        super(name, parents);
+    public TMacro(final String name) {
+        super(name);
     }
 
     @Override

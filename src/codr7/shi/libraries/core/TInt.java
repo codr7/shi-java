@@ -5,8 +5,8 @@ import codr7.shi.ICell;
 import codr7.shi.ICellType;
 
 public final class TInt extends CellType<Long> {
-    public TInt(final String name, final ICellType... parents) {
-        super(name, parents);
+    public TInt(final String name) {
+        super(name);
     }
 
     @Override
